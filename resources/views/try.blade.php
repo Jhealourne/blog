@@ -21,11 +21,6 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-      <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>-->
 
     </head>
 
@@ -137,6 +132,8 @@
         </div>
         </div>
         </div><!--/carouselcontainer-->
+
+        
           <div class="container">
             <div class="row row-offcanvas row-offcanvas-right">
              <div class="row">
@@ -168,20 +165,21 @@
           </div>
         </div>
       </div><!--/containercardtitle-->
-        <div class="container">
-            <div class="row row-offcanvas row-offcanvas-right">
-             <div class="row">
-              <div class="col-12 col-md-9" style="margin-top: 1cm;">
-                <div class="card-deck">
-                  <div class="card img-fluid" >
-                    <img class="card-img-top" src="img/nyattack.jpg" alt="Card image cap">
-                      <div class="card-img-overlay">
-                        <div class="content">
-                        <h4 class="card-title">tobacco excise tax</h4>
-                          <p class="card-text">Labor, farmers appeal to bicam on tobacco excise tax</p>
-                      </div>
+
+      <div class="container">
+        <div class="row row-offcanvas row-offcanvas-right">
+          <div class="row">
+            <div class="col-12 col-md-9" style="margin-top: 1cm;">
+              <div class="card-deck">
+                <div class="card img-fluid" >
+                  <img class="card-img-top" src="img/nyattack.jpg" alt="Card image cap">
+                    <div class="card-img-overlay">
+                      <div class="content">
+                      <h4 class="card-title">tobacco excise tax</h4>
+                        <p class="card-text">Labor, farmers appeal to bicam on tobacco excise tax</p>
+                    </div>
                   </div>
-                  </div>
+                </div>
                 <div class="card img-fluid">
                   <img class="card-img-top" src="img/Duterte-Marawi.jpg" alt="Card image cap">
                    <div class="card-img-overlay">
@@ -203,39 +201,40 @@
       </div><!--/containercardtitle-->
 
 
-<div class="row">
-<div class="list-group">
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <li class="media">
-        <img class="mt-0 mb-1" src="img/marawi.jpg" alt="marawi" style="width:200px">
-          <div class="media-body">
-            <h5 class="mt-0 mb-1">Marawi</h5>
-      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
-      </li>
+    <div class="row">
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <li class="media">
+              <img class="mt-0 mb-1" src="img/marawi.jpg" alt="marawi" style="width:200px">
+                <div class="media-body">
+                  <h5 class="mt-0 mb-1">Marawi</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
+            </li>
+          </div>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <li class="media">
+              <img class="mt-0 mb-1" src="img/marawi.jpg" alt="marawi" style="width:200px">
+                <div class="media-body">
+                  <h5 class="mt-0 mb-1">Marawi</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
+            </li>
+          </div>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <li class="media">
+              <img class="mt-0 mb-1" src="img/marawi.jpg" alt="marawi" style="width:200px">
+                <div class="media-body">
+                  <h5 class="mt-0 mb-1">Marawi</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
+            </li>
+          </div>
+        </a>
+      </div>
     </div>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <li class="media">
-        <img class="mt-0 mb-1" src="img/marawi.jpg" alt="marawi" style="width:200px">
-          <div class="media-body">
-            <h5 class="mt-0 mb-1">Marawi</h5>
-      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
-      </li>
-    </div>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <li class="media">
-        <img class="mt-0 mb-1" src="img/marawi.jpg" alt="marawi" style="width:200px">
-          <div class="media-body">
-            <h5 class="mt-0 mb-1">Marawi</h5>
-      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
-      </li>
-    </div>
-  </a>
-
 
         
       
