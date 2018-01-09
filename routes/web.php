@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('try');
 });
  Route::get('/try','TryController@showtry')->name('try');
- Route::get('/signin','SigninController@showSignin')->name('signin');//signin
+ Route::get('/Signin','SigninController@showSignin')->name('signin');//signin
  Route::get('/Signup','SignUpController@showSignup')->name('Signup');//Signup
 
-
+Route::get('/', 'WebController@homepage');
  
