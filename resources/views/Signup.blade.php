@@ -18,7 +18,8 @@
 <link  rel="icon" type="image/ico" href = "icon.ico">
 
       <link href="design2.css" rel="stylesheet" >
-      
+      <link href="open-iconic-master/font/css/open-iconic-foundation.css" rel="stylesheet">
+
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
@@ -33,14 +34,15 @@
 	<h1><center><strong>Sign-Up</strong></center></h1>
     <div class="container">
 
-    <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+<form class="well form-horizontal" action="/register" method="post"  id="contact_form">
+{{ csrf_field() }}
+
 <fieldset>
 
 <!-- Form Name -->
 <legend><center><h2><b>Registration Form</b></h2></center></legend><br>
 
 <!-- Text input-->
-
 <div class="form-group">
   <label class="col-md-4 control-label">First Name</label>  
   <div class="col-md-4 inputGroupContainer">
@@ -63,7 +65,17 @@
   </div>
 </div>
 
-  <div class="form-group"> 
+<div class="form-group">
+  <label class="col-md-4 control-label" >Display Name</label> 
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input name="display_name" placeholder="Display Name" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+
+<!--   <div class="form-group"> 
   <label class="col-md-4 control-label">Department / Office</label>
     <div class="col-md-4 selectContainer">
     <div class="input-group">
@@ -82,7 +94,7 @@
     </select>
   </div>
 </div>
-</div>
+</div> -->
   
 <!-- Text input-->
 
@@ -121,7 +133,7 @@
 </div>
 
 <!-- Text input-->
-       <div class="form-group">
+<div class="form-group">
   <label class="col-md-4 control-label">E-Mail</label>  
     <div class="col-md-4 inputGroupContainer">
     <div class="input-group">
@@ -147,15 +159,16 @@
 <!-- Select Basic -->
 
 <!-- Success message -->
-<div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Success!.</div>
+<div class="alert alert-success" role="alert" id="success_message">Success<i class="glyphicon glyphicon-thumbs-up"></i> Success!.</div>
 
 <!-- Button -->
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
-  <div class="col-md-4"><br>
-    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+  <div class="col-md-4">
+    <button type="submit" class="btn btn-success btn-lg">Submit</button>
   </div>
 </div>
+
 
 </fieldset>
 </form>

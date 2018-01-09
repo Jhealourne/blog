@@ -14,9 +14,11 @@
 Route::get('/', function () {
     return view('try');
 });
- Route::get('/try','TryController@showtry')->name('try');
- Route::get('/Signin','SigninController@showSignin')->name('signin');//signin
- Route::get('/Signup','SignUpController@showSignup')->name('Signup');//Signup
+Route::get('/try','TryController@showtry')->name('try');
+Route::get('/Signin','WebController@showSignin')->name('signin');//signin
+
+Route::get('/Signup','WebController@showSignup')->name('Signup');//Signup
+Route::post('/register', 'WebController@register');
 
 Route::get('/', 'WebController@homepage');
  
