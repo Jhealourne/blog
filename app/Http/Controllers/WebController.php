@@ -22,7 +22,7 @@ class WebController extends Controller
     }
     public function login(Request $req){
         if(Auth::attempt(['username'=> $req->username,'password'=> $req->password, 'deleted' => 0])){
-        	return redirect('/AdminHome');
+        	return redirect('/AuthorHome');
         } else {
         	return redirect('/Signin');
         }
@@ -44,10 +44,6 @@ class WebController extends Controller
     		'first_name' => $req->first_name,
     		'last_name' => $req->last_name,
     		'display_name' => $req->display_name,
-    		'description' => '',
-    		'profile_pic' => '',
-    		'profile_cover' => '',
-    		'url' => '',
     	]);
 
     	DB::table('users')->insert([
