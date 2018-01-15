@@ -14,11 +14,18 @@ class WebController extends Controller
     public function showSignin(){
     	return view('signin');
     }
+    public function login(){
+    	
+    }
 
     public function showSignup(){
     	return view('signup');
     }
     public function register(Request $req){
+    	// DB::table('users')->insert([
+    	// 	'username' => 'admin',
+    	// 	'password' => bcrypt('admin'),
+    	// ]);
     	$auid = DB::table('author')->insertGetId([
     		'first_name' => $req->first_name,
     		'last_name' => $req->last_name,

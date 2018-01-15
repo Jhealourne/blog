@@ -47,7 +47,7 @@
 <title>Signin</title>
 <div class="container">
 
-  <form class="form-horizontal" method="post">
+  <form class="form-horizontal" method="post" action="/login">
   <h3>Sign in to NewsBeat</h3>
   <h4><small>All fields are required</small></h4>
     <div class="form-group">

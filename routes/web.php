@@ -18,6 +18,7 @@ Route::get('/try','TryController@showtry')->name('try');
 Route::get('/Signin','WebController@showSignin')->name('signin');//signin
 
 Route::get('/Signup','WebController@showSignup')->name('Signup');//Signup
+Route::get('/login', 'WebController@login');
 Route::post('/register', 'WebController@register');
 
 Route::get('/', 'WebController@homepage');
