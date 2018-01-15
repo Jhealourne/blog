@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Auth;
 
 class WebController extends Controller
-{
+{ 
+	// public function __construct()
+ //    {
+ //        $this->middleware('guest', ['except' => 'logout']);
+ //    }
+
     public function homepage(){
     	return view('homepage');
     }
@@ -14,9 +20,17 @@ class WebController extends Controller
     public function showSignin(){
     	return view('signin');
     }
-    public function login(){
-    	
+    public function login(Request $req){
+        if(Auth::attempt(['username'=> $req->username,'password'=> $req->password, 'deleted' => 0])){
+        	return redirect('/AdminHome');
+        } else {
+        	return redirect('/Signin');
+        }
     }
+    public function logout(Request $request) {
+	  Auth::logout();
+	  return redirect('/Signin');
+	}
 
     public function showSignup(){
     	return view('signup');
