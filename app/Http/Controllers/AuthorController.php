@@ -22,4 +22,8 @@ class AuthorController extends Controller
 
         return view('author.write');
     }
+    public function saveArticle(Request $req){
+        echo $req->article;
+        die();
+    }
 }

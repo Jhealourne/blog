@@ -20,6 +20,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+  <script src="/textboxio-client/textboxio/textboxio.js"></script>
 
   <style type="text/css">
     .row{
@@ -71,11 +72,40 @@
     </ul>
   </nav>
 
- 
+  <div class="container" style="margin-bottom: 100px">
+    <div class="row">
+      <div class="col-sm-10">
+        <form method="post" action="/saveArticle">
+          {{ csrf_field() }}
+          <div class="form-group">
+            <label for="exampleFormControlFile1">Choose thumbnail</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+          </div>
+          <div class="form-group"> 
+            <label>Title</label>
+            <input type="text" class="form-control form-control-lg" placeholder="Title" name="title">
+          </div>
+          <div class="form-group"> 
+            <label>Summary</label>
+            <input type="text" class="form-control" placeholder="Summary" name="summary">
+          </div>
+          <div class="form-group">
+            <label>Article</label>
+            <textarea class="form-control" id="mytextarea" placeholder="Write your article....." rows="10" name="article"></textarea>
+          </div>
 
+          <button type="submit" class="btn btn-success">Save</button>
+        </form>
+      </div>
+      <div class="col">
+        <div class="container">
 
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <nav class="navbar fixed-bottom navbar-light bg-light">
+  <nav class="navbar navbar-light bg-light">
     <div class="container" style="padding: 10px">
       <p class="float-right"><a href="#">Back to top</a></p>
       <p>&copy; 2017 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
@@ -86,6 +116,9 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript">
+      var editor = textboxio.replace('#mytextarea');
+    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="bootstrap-4.0.0-beta.2/assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="bootstrap-4.0.0-beta.2/assets/js/vendor/popper.min.js"></script>
