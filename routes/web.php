@@ -30,3 +30,4 @@ Route::get('/AdminHome', 'AdminController@AdminHome');
 Route::get('/logout', 'WebController@logout');
 
 Route::get('/AuthorHome', 'AuthorController@AuthorHome');
+Route::get('/WriteArticle', 'AuthorController@WriteArticle');

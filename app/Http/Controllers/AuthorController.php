@@ -18,4 +18,8 @@ class AuthorController extends Controller
     public function AuthorHome(){
     	return view('author.home');
     }
+    public function WriteArticle(){
+
+        return view('author.write');
+    }
 }

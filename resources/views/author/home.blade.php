@@ -54,18 +54,21 @@
       </ul>
     </div>
 
-    <button type="button" class="btn btn-outline-light">Louise Lazaro</button>
-   <!--  <div class="btn-group">
-      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Louise Lazaro
-      </button>
-      <div class="dropdown-menu dropdown-menu-right">
-        <button class="dropdown-item" type="button">Action</button>
-        <button class="dropdown-item" type="button">Another action</button>
-        <button class="dropdown-item" type="button">Something else here</button>
-      </div>
-    </div> -->
-   
+    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+      <li class="nav-item dropdown">
+        <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Louise Lazaro
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
+          <a class="dropdown-item" href="/WriteArticle">Write an article</a>
+          <a class="dropdown-item" href="">Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="">Logout</a>
+        </div>
+      </li>
+    </ul>
   </nav>
 
   <div class="container">
