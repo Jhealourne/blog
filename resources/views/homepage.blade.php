@@ -35,12 +35,12 @@
 <body>
 
   <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">NewsBeat xD</a>
+    <a class="navbar-brand mb-0 h1" href="#">NewsBeat xD</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <div class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -51,56 +51,13 @@
         <li class="nav-item">
           <a class="nav-link disabled" href="#">Disabled</a>
         </li>
-  <!--       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li> -->
       </ul>
-
-      <div>
-        <!-- Button trigger modal -->
-      <button type="button" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#exampleModal">Launch demo modal</button>  
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title text-danger" id="exampleModalLabel">Login</h5>
-            </div>
-          <div class="modal-body">
-      ...
-          </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>  
-        </div>
-      </div>
-
-      <div class="btn btn-outline-primary" onclick="location.href='/Signin'">Sign-in</div>
-      <div class="btn btn-outline-primary" onclick="location.href='/Signup'">Sign-up</div>
-      </div><!--button div-->
-   
-  </nav>
-
-<!--   <div class="container">
-    <div class="row">
-      <div class="col-sm" style="background-color: yellow">
-        One of three columns
-      </div>
-      <div class="col-sm" style="background-color: blue">
-        One of three columns
-      </div>
-      <div class="col-sm" style="background-color: red">
-        One of three columns
-      </div>
     </div>
-  </div> -->
+    <div>
+      <div class="btn btn-outline-primary" onclick="location.href='/Signin'">Sign-in</div>
+      <div class="btn btn-outline-secondary" onclick="location.href='/Signup'">Sign-up</div>
+    </div>
+  </nav>
 
   <div class="container">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
