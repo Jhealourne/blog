@@ -23,20 +23,27 @@ class AuthorController extends Controller
         return view('author.write');
     }
     public function saveArticle(Request $req){
+        $image = $req->thumbnail;
+        if(!empty($image)){
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('/thumbnails'), $filename);
+        } else {
+            $filename = "";
+        }
         DB::table('article')->insert([
             'article_title' => $req->title,
             'article_summary' => $req->summary,
-            'article_thumbnail' => 'lolo',
+            'article_thumbnail' => $filename,
             'article_full' => $req->article,
             'author_id' => Auth::user()->author_id,
             'publish_datetime' => date_create('now')->format('Y-m-d H:i:s')
         ]);
 
-        return redirect('/');
+        return redirect('/Profile');
     }
     public function Profile(){
         $author = DB::table('author')->where('author_id',Auth::user()->author_id)->first();
-        $article = DB::table('article')->where('deleted',0)->get();
+        $article = DB::table('article')->where('author_id',Auth::user()->author_id)->where('deleted',0)->orderby('publish_datetime','DESC')->get();
         return view('author.profile',['article' => $article, 'author' => $author]);
     }
 }

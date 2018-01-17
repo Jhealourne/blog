@@ -57,11 +57,12 @@
     <div class="row">
       <div class="col">
         <div class="card-deck">
-          <div class="card ">
+          <div class="card">
             <img class="card-img-top" src="img/cigarette.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title">tobacco excise tax</h4>
-                <p class="card-text">Labor, farmers appeal to bicam on tobacco excise tax</p>
+
+              <h4 class="card-title">extend martial law for 1 more year</h4>
+            <div class="list-group">
+              <a href="#" class="list-group-item list-group-item-action"><small>Sample title</small></a>
             </div>
           </div>
           <div class="card">

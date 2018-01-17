@@ -30,7 +30,9 @@
               <h6><strong>{{ $author->first_name.' '.$author->last_name}}</strong></h6>
               <h7 class="mb-2 text-muted">Published {{ date_create($art->publish_datetime)->format('M d Y, h:i a')}}</h7>
             </div>
-            <img class="card-img-top" src="img/cigarette.jpg" alt="Card image cap" height="300">
+            @if($art->article_thumbnail != "")
+            <img class="card-img-top" src="/thumbnails/{{$art->article_thumbnail}}" alt="Card image cap" height="300">
+            @endif
             <div class="card-body">
               <h5 class="card-title">{{$art->article_title}}</h5>
               <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->

@@ -6,11 +6,11 @@
   <div class="container" style="margin-bottom: 100px">
     <div class="row">
       <div class="col-sm-10">
-        <form method="post" action="/saveArticle">
+        <form method="post" action="/saveArticle" enctype="multipart/form-data">
           {{ csrf_field() }}
           <div class="form-group">
             <label for="exampleFormControlFile1">Choose thumbnail</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="thumbnail">
           </div>
           <div class="form-group"> 
             <label>Title</label>
