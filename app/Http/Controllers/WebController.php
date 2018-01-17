@@ -22,7 +22,7 @@ class WebController extends Controller
     }
     public function login(Request $req){
         if(Auth::attempt(['username'=> $req->username,'password'=> $req->password, 'deleted' => 0])){
-        	return redirect('/AuthorHome');
+        	return redirect('/');
         } else {
         	return redirect('/Signin');
         }
@@ -36,10 +36,6 @@ class WebController extends Controller
     	return view('signup');
     }
     public function register(Request $req){
-    	// DB::table('users')->insert([
-    	// 	'username' => 'admin',
-    	// 	'password' => bcrypt('admin'),
-    	// ]);
     	$auid = DB::table('author')->insertGetId([
     		'first_name' => $req->first_name,
     		'last_name' => $req->last_name,

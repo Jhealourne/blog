@@ -1,5 +1,4 @@
-@extends('layouts.author')
-
+@extends('layouts.web')
 
 @section('title','Write')
 

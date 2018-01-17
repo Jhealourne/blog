@@ -1,4 +1,4 @@
-@extends('layouts.author')
+@extends('layouts.web')
 
 @section('title','Profile')
 
@@ -45,6 +45,7 @@
     @endforeach
     </div>
     <div class="col">
+
     </div>
   </div>
 </div>
