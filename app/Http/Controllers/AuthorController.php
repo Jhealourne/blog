@@ -17,7 +17,7 @@ class AuthorController extends Controller
     }
 
     public function AuthorHome(){
-    	return view('author.home');
+    	return view('author.home',['article' => $article]);
     }
     public function WriteArticle(){
         return view('author.write');
@@ -39,11 +39,16 @@ class AuthorController extends Controller
             'publish_datetime' => date_create('now')->format('Y-m-d H:i:s')
         ]);
 
-        return redirect('/Profile');
+        return redirect('/AuthorProfile');
     }
     public function Profile(){
         $author = DB::table('author')->where('author_id',Auth::user()->author_id)->first();
         $article = DB::table('article')->where('author_id',Auth::user()->author_id)->where('deleted',0)->orderby('publish_datetime','DESC')->get();
         return view('author.profile',['article' => $article, 'author' => $author]);
+    }
+    public function Settings(){
+        $author = DB::table('author')->where('author.author_id',Auth::user()->author_id)->join('users as u','u.author_id','=','author.author_id')->first();
+
+        return view('author.settings',['author' => $author]);
     }
 }

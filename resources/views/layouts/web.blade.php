@@ -72,10 +72,7 @@
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
+          <a class="nav-link" href="#">Category</a>
         </li>
       </ul>
     </div>
@@ -92,9 +89,9 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
           <a class="dropdown-item" href="/WriteArticle">Write an article</a>
-          <a class="dropdown-item" href="/Profile">Profile</a>
+          <a class="dropdown-item" href="/AuthorProfile">Profile</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="">Settings</a>
+          <a class="dropdown-item" href="/Settings">Settings</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="/logout">Logout</a>
         </div>

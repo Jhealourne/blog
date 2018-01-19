@@ -14,7 +14,8 @@ class WebController extends Controller
  //    }
 
     public function homepage(){
-    	return view('homepage');
+        $article = DB::table('article')->get();
+    	return view('homepage',['article' => $article]);
     }
 
     public function showSignin(){
@@ -36,10 +37,18 @@ class WebController extends Controller
     	return view('signup');
     }
     public function register(Request $req){
+        $image = $req->picture;
+        if(!empty($image)){
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('/profile'), $filename);
+        } else {
+            $filename = "as";
+        }
     	$auid = DB::table('author')->insertGetId([
     		'first_name' => $req->first_name,
     		'last_name' => $req->last_name,
     		'display_name' => $req->display_name,
+            'prof_pic' => $filename
     	]);
 
     	DB::table('users')->insert([

@@ -30,6 +30,8 @@ Route::get('/AdminHome', 'AdminController@AdminHome');
 Route::get('/logout', 'WebController@logout');
 
 Route::get('/AuthorHome', 'AuthorController@AuthorHome');
-Route::get('/Profile', 'AuthorController@Profile');
+Route::get('/AuthorProfile', 'AuthorController@Profile');
+Route::get('/Settings', 'AuthorController@Settings');
 Route::get('/WriteArticle', 'AuthorController@WriteArticle');
 Route::post('/saveArticle', 'AuthorController@saveArticle');
+Route::post('/updateprofile', 'AuthorController@updateprofile');
