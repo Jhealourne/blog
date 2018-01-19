@@ -51,4 +51,7 @@ class AuthorController extends Controller
 
         return view('author.settings',['author' => $author]);
     }
+    public function ManageArticle(){
+        return view('author.manage');
+    }
 }

@@ -36,5 +36,5 @@ Route::get('/WriteArticle', 'AuthorController@WriteArticle');
 Route::post('/saveArticle', 'AuthorController@saveArticle');
 Route::post('/updateprofile', 'AuthorController@updateprofile');
 
-
 Route::get('/Article/{id}', ['uses' => 'WebController@Article']);
+Route::get('/ManageArticle', 'AuthorController@ManageArticle');

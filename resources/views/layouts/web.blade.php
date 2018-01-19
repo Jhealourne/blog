@@ -77,10 +77,12 @@
         </li>
       </ul>
     </div>
+    <div class="collapse navbar-collapse">
     <form class="form-inline">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
+    </div>
     @if(!Auth::check())
     <div>
       <div class="btn btn-outline-primary" onclick="location.href='/Signin'">Sign-in</div>
@@ -95,6 +97,7 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
           <a class="dropdown-item" href="/WriteArticle">Write an article</a>
           <a class="dropdown-item" href="/AuthorProfile">Profile</a>
+          <a class="dropdown-item" href="/ManageArticle">Manage article</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="/Settings">Settings</a>
           <div class="dropdown-divider"></div>
