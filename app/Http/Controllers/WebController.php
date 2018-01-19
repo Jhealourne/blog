@@ -14,7 +14,7 @@ class WebController extends Controller
  //    }
 
     public function homepage(){
-        $article = DB::table('article')->get();
+        $article = DB::table('article')->orderby('publish_datetime','DESC')->get();
     	return view('homepage',['article' => $article]);
     }
 

@@ -36,6 +36,4 @@ hr {
 	</div>
 </div>
 
-
-
 @endsection

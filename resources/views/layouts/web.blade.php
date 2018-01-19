@@ -77,6 +77,10 @@
         </li>
       </ul>
     </div>
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
     @if(!Auth::check())
     <div>
       <div class="btn btn-outline-primary" onclick="location.href='/Signin'">Sign-in</div>
