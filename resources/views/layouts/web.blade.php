@@ -52,6 +52,7 @@
       margin-top: 40px;
     }
   </style>
+  @yield('style')
   <script type="text/javascript">
     $(document).ready(function(){
       $('.dropdown-toggle').dropdown();

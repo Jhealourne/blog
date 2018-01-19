@@ -28,7 +28,7 @@ class AuthorController extends Controller
             $filename = time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('/thumbnails'), $filename);
         } else {
-            $filename = "";
+            $filename = "noimage.jpeg";
         }
         DB::table('article')->insert([
             'article_title' => $req->title,

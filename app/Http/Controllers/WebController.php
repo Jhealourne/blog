@@ -58,5 +58,10 @@ class WebController extends Controller
     	]);
     	return redirect('/Signin');
     }
+
+    public function Article($id){
+        $article = DB::table('article as a')->where('a.article_id',$id)->join('author as au','au.author_id','=','a.author_id')->first();
+        return view('article',['article' => $article]);
+    }
 }
 

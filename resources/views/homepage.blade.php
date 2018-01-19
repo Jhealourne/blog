@@ -114,13 +114,13 @@
     <div class="row">
       <div class="list-group">
         @foreach($article as $art)
-        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+        <a href="/Article/{{$art->article_id}}" class="list-group-item list-group-item-action flex-column align-items-start">
           <div class="d-flex w-100 justify-content-between">
             <li class="media">
-              <img class="mt-0 mb-1" src="thumbnails/{{$art->article_thumbnail}}" alt="marawi" style="width:200px; margin-right: 10px">
+              <img class="mt-0 mb-1 img-thumbnail" src="/thumbnails/{{$art->article_thumbnail}}" alt="" style="width:200px;height:160px ; margin-right: 10px">
                 <div class="media-body">
                   <h5 class="mt-2 mb-1">{{$art->article_title}}</h5>
-                  <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.</p>
+                  <p>{{$art->article_summary}}</p>
             </li>
           </div>
         </a>
