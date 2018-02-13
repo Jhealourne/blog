@@ -10,12 +10,12 @@
 		<div class="col-sm-6">
 			<form class="well form-horizontal" action="/updateprofile" method="post"  id="contact_form" enctype="multipart/form-data">
           {{ csrf_field() }}
-
+          <input type="hidden" name="id" value="{{$author->author_id}}">
           <div class="form-group">
             <label class="col-sm-10 control-label">First Name</label>  
             <div class="col-sm-10 inputGroupContainer">
               <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
                 <input  name="first_name" placeholder="First Name" class="form-control"  type="text" value="{{$author->first_name}}">
               </div>
             </div>
