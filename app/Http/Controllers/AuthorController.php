@@ -10,10 +10,8 @@ use DB;
 class AuthorController extends Controller
 {
     public function __construct()
-    {
-        // $this->middleware('auth');
-        $this->middleware('checkgen');
-        // parent::__construct();
+    { 
+        $this->middleware('checkgen'); 
     }
 
     public function AuthorHome(){
@@ -48,8 +46,29 @@ class AuthorController extends Controller
     }
     public function Settings(){
         $author = DB::table('author')->where('author.author_id',Auth::user()->author_id)->join('users as u','u.author_id','=','author.author_id')->first();
-
         return view('author.settings',['author' => $author]);
+    }
+    public function updateprofile(Request $req){
+        $image = $req->picture;
+        if(!empty($image)){
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('/profile'), $filename);
+        } else {
+            $filename = "profileicon.jpg";
+        }
+        DB::table('author')->where('author_id',$req->id)->update([
+            'first_name' => $req->first_name,
+            'last_name' => $req->last_name,
+            'display_name' => $req->display_name,
+            'prof_pic' => $filename
+        ]);
+
+        // DB::table('users')->insert([
+        //     'username' => $req->user_name,
+        //     'password' => bcrypt($req->user_password),
+        //     'author_id' => $auid,
+        // ]);
+        return redirect('/AuthorProfile');
     }
     public function ManageArticle(){
         return view('author.manage');

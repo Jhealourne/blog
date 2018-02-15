@@ -61,7 +61,7 @@ class WebController extends Controller
             $filename = time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('/profile'), $filename);
         } else {
-            $filename = "as";
+            $filename = "profileicon.jpg";
         }
     	$auid = DB::table('author')->insertGetId([
     		'first_name' => $req->first_name,
