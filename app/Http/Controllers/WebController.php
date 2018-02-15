@@ -12,9 +12,28 @@ class WebController extends Controller
  //    {
  //        $this->middleware('guest', ['except' => 'logout']);
  //    }
+    public function showAdminLogin(Request $req){
+        return view('adminlogin');
+    }
+    public function doAdminLogin(Request $req){
+        if (DB::table('admin')->first() == "") {
+            DB::table('admin')->insert([
+                'username' => 'admin',
+                'password' => bcrypt('admin'),
+            ]);
+        } 
+        $var = DB::table('admin')->where('username',$req->username)->where('password',$req->password)->first();
+
+        if ($var == "") {
+            return redirect('/AdminLogin');
+        } else {
+            return redirect('/AdminHome');
+        }
+
+    }
 
     public function homepage(){
-        $article = DB::table('article')->orderby('publish_datetime','DESC')->get();
+        $article = DB::table('article')->orderby('publish_datetime','DESC')->where('deleted',0)->get();
     	return view('homepage',['article' => $article]);
     }
 

@@ -11,10 +11,7 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth');
-        $this->middleware('checkgen');
-        // parent::__construct();
-        // die();
+        $this->middleware('checkgen'); 
     }
     public function AdminHome(){
     	return view('admin.home');

@@ -18,9 +18,7 @@ Route::get('/try','TryController@showtry')->name('try');
 Route::get('/Signin','WebController@showSignin')->name('signin');//signin
 
 Route::get('/Signup','WebController@showSignup')->name('Signup');//Signup
-// Route::get('/login', function(){
-// 	return redirect('/');
-// });
+ 
 Route::post('/login', 'WebController@login');
 Route::post('/register', 'WebController@register');
 
@@ -38,3 +36,7 @@ Route::post('/updateprofile', 'AuthorController@updateprofile');
 
 Route::get('/Article/{id}', ['uses' => 'WebController@Article']);
 Route::get('/ManageArticle', 'AuthorController@ManageArticle');
+
+Route::get('/AdminLogin', 'WebController@showAdminLogin');
+Route::post('/doLoginAdmin', 'WebController@doAdminLogin');
+
