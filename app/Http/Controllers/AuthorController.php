@@ -18,7 +18,8 @@ class AuthorController extends Controller
     	return view('author.home',['article' => $article]);
     }
     public function WriteArticle(){
-        return view('author.write');
+        $ctgry = DB::table('category')->where('status',0)->get();
+        return view('author.write',compact('ctgry'));
     }
     public function saveArticle(Request $req){
         $image = $req->thumbnail;
@@ -34,6 +35,7 @@ class AuthorController extends Controller
             'article_thumbnail' => $filename,
             'article_full' => $req->article,
             'author_id' => Auth::user()->author_id,
+            'category_id' =>$req->ctgry,
             'publish_datetime' => date_create('now')->format('Y-m-d H:i:s')
         ]);
 

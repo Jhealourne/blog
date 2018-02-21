@@ -7,29 +7,16 @@ use DB;
 use Auth;
 
 class WebController extends Controller
-{ 
-	// public function __construct()
- //    {
- //        $this->middleware('guest', ['except' => 'logout']);
- //    }
+{
     public function showAdminLogin(Request $req){
         return view('adminlogin');
     }
     public function doAdminLogin(Request $req){
-        if (DB::table('admin')->first() == "") {
-            DB::table('admin')->insert([
-                'username' => 'admin',
-                'password' => bcrypt('admin'),
-            ]);
-        } 
-        $var = DB::table('admin')->where('username',$req->username)->where('password',$req->password)->first();
-
-        if ($var == "") {
-            return redirect('/AdminLogin');
+        if(Auth::attempt(['username'=> $req->username,'password'=> $req->password, 'usertype' => 1, 'deleted' => 0])){
+            return redirect('/Admin/Home');
         } else {
-            return redirect('/AdminHome');
+            return redirect('/AdminLogin');
         }
-
     }
 
     public function homepage(){
@@ -41,7 +28,7 @@ class WebController extends Controller
     	return view('signin');
     }
     public function login(Request $req){
-        if(Auth::attempt(['username'=> $req->username,'password'=> $req->password, 'deleted' => 0])){
+        if(Auth::attempt(['username'=> $req->username,'password'=> $req->password, 'usertype' => 0, 'deleted' => 0])){
         	return redirect('/');
         } else {
         	return redirect('/Signin');
@@ -73,6 +60,7 @@ class WebController extends Controller
     	DB::table('users')->insert([
     		'username' => $req->user_name,
     		'password' => bcrypt($req->user_password),
+            'usertype' => '0',
     		'author_id' => $auid,
     	]);
     	return redirect('/Signin');

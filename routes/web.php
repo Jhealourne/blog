@@ -23,7 +23,7 @@ Route::post('/login', 'WebController@login');
 Route::post('/register', 'WebController@register');
 
 Route::get('/', 'WebController@homepage');
-Route::get('/AdminHome', 'AdminController@AdminHome');
+Route::get('/Admin/Home', 'AdminController@AdminHome');
 
 Route::get('/logout', 'WebController@logout');
 
@@ -39,4 +39,10 @@ Route::get('/ManageArticle', 'AuthorController@ManageArticle');
 
 Route::get('/AdminLogin', 'WebController@showAdminLogin');
 Route::post('/doLoginAdmin', 'WebController@doAdminLogin');
+
+Route::get('/Admin/Category', 'AdminController@category');
+Route::get('/getCategory', 'AdminController@getCategory');
+Route::post('/addCategory', 'AdminController@addCategory');
+Route::post('/editCategory', 'AdminController@editCategory');
+Route::post('/delCategory', 'AdminController@delCategory');
 

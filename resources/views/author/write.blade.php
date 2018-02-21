@@ -20,6 +20,14 @@
             <label>Summary</label>
             <input type="text" class="form-control" placeholder="Summary" name="summary">
           </div>
+          <div class="form-group"> 
+            <label>Category</label>
+            <select class="form-control" name="ctgry">
+              @foreach($ctgry as $ctgry)
+              <option value="{{$ctgry->category_id}}">{{$ctgry->category_name}}</option>
+              @endforeach
+            </select>
+          </div>
           <div class="form-group">
             <label>Article</label>
             <textarea class="form-control" id="mytextarea" placeholder="Write your article....." rows="10" name="article"></textarea>
@@ -36,4 +44,10 @@
     </div>
   </div>
 
+@endsection
+
+@section('script')
+   <script type="text/javascript">
+      var editor = textboxio.replace('#mytextarea');
+    </script>
 @endsection
