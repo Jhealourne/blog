@@ -48,6 +48,20 @@
 
 @section('script')
    <script type="text/javascript">
+
+// var config = {
+//     images : {
+//         upload : {
+//             url : '/savePic',
+//             basePath : '/img',
+//             data : {
+//               _token: "{{ Session::token() }}",
+//             },
+//            dataType: "json",
+//            type: 'post'
+//         }
+//     }
+// };
       var editor = textboxio.replace('#mytextarea');
     </script>
 @endsection

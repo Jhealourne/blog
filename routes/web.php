@@ -27,11 +27,11 @@ Route::get('/Admin/Home', 'AdminController@AdminHome');
 
 Route::get('/logout', 'WebController@logout');
 
-Route::get('/AuthorHome', 'AuthorController@AuthorHome');
 Route::get('/AuthorProfile', 'AuthorController@Profile');
 Route::get('/Settings', 'AuthorController@Settings');
 Route::get('/WriteArticle', 'AuthorController@WriteArticle');
 Route::post('/saveArticle', 'AuthorController@saveArticle');
+Route::post('/savePic', 'AuthorController@savePic');
 Route::post('/updateprofile', 'AuthorController@updateprofile');
 
 Route::get('/Article/{id}', ['uses' => 'WebController@Article']);

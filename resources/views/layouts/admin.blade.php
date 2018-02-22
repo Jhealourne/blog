@@ -69,7 +69,6 @@
   </div>
 </div>
     
-
   @yield('script')
 
     <!-- Bootstrap core JavaScript

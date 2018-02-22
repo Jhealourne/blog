@@ -20,8 +20,9 @@ class WebController extends Controller
     }
 
     public function homepage(){
+        $carousel = DB::table('article')->where('deleted',0)->orderByRaw("RAND()")->take(3)->get();
         $article = DB::table('article')->orderby('publish_datetime','DESC')->where('deleted',0)->get();
-    	return view('homepage',['article' => $article]);
+    	return view('homepage',compact('article','carousel'));
     }
 
     public function showSignin(){
