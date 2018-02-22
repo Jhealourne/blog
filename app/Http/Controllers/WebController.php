@@ -35,6 +35,7 @@ class WebController extends Controller
     }
     public function login(Request $req){
         if(Auth::attempt(['username'=> $req->username,'password'=> $req->password, 'usertype' => 0, 'deleted' => 0])){
+            setcookie('userid',Auth::id());
         	return redirect('/');
         } else {
         	return redirect('/Signin');
@@ -75,6 +76,10 @@ class WebController extends Controller
     public function Article($id){
         $article = DB::table('article as a')->where('a.article_id',$id)->join('author as au','au.author_id','=','a.author_id')->first();
         return view('article',['article' => $article]);
+    }
+    public function saveRating(Request $req){
+        
+        return response()->json();
     }
 }
 

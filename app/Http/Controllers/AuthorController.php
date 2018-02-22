@@ -18,9 +18,6 @@ class AuthorController extends Controller
         $this->middleware('checkgen'); 
     }
 
-    public function AuthorHome(){
-    	return view('author.home',['article' => $article]);
-    }
     public function WriteArticle(){
         $ctgry = DB::table('category')->where('deleted',0)->get();
         return view('author.write',compact('ctgry'));

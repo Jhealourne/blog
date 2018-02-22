@@ -18,33 +18,6 @@
 
   <link href="{{asset('design2.css')}}" rel="stylesheet" >
   <link href="{{asset('open-iconic-master/font/css/open-iconic-bootstrap.css')}}" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <!-- <script src='/tinymce/js/tinymce/tinymce.min.js'></script> -->
-  <script src="{{asset('textboxio-client/textboxio/textboxio.js')}}"></script>
-<!--   <script>
-// tinymce.init({
-//   selector: "textarea",  // change this value according to your HTML
-//   toolbar: "image",
-//   plugins: "image imagetools",
-//   imagetools_cors_hosts: ['mydomain.com', 'otherdomain.com'],
-//   imagetools_proxy: 'proxy.php'
-// });
-    tinymce.init({
-      selector: 'textarea',
-      height: 500,
-      plugins: [
-            "advlist autolink lists link image charmap print preview anchor",
-            "searchreplace visualblocks code fullscreen",
-            "insertdatetime media table contextmenu paste imagetools wordcount"
-        ],
-        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | image",
-      // imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
-      content_css: [
-        '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-        '//www.tinymce.com/css/codepen.min.css'
-      ]
-    });
-  </script> -->
 
   <style type="text/css">
     .row{
@@ -52,11 +25,6 @@
     }
   </style>
   @yield('style')
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('.dropdown-toggle').dropdown();
-    });
-  </script>
 </head>
 <body>
 
@@ -125,16 +93,33 @@
   </div>
 </div>
 
-  @yield('script')
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
- 
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> -->
-    <script src="{{asset('bootstrap-4.0.0-beta.2/assets/js/vendor/jquery-slim.min.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script src="{{asset('bootstrap-4.0.0-beta.2/assets/js/vendor/jquery-slim.min.js')}}"></script> -->
     <script>window.jQuery || document.write('<script src="bootstrap-4.0.0-beta.2/assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="{{asset('bootstrap-4.0.0-beta.2/assets/js/vendor/popper.min.js')}}"></script>
     <script src="{{asset('bootstrap-4.0.0-beta.2/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('textboxio-client/textboxio/textboxio.js')}}"></script>
+    <script src="{{asset('emotion-ratings-master/emotion-rating.min.js')}}"></script>
+    <script src="{{asset('jquery-cookie-master/src/jquery.cookie.js')}}"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.dropdown-toggle').dropdown();
+      var emotionsArray = ['angry','disappointed','crying','meh', 'happy', 'laughing'];
+      // or a single one
+      // var emotionsArray = ['happy'];
+      $("#divrate").emotionsRating({
+        count: 6,
+        emotionSize: 60,
+        bgEmotion: 'happy',
+        emotions: emotionsArray,
+        color: '#FF0066' //the color must be expressed with a css code
+      });
+    });
+
+  </script>
+
+
+    @yield('script')
   </body>
 </html>
