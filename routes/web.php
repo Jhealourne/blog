@@ -24,12 +24,14 @@ Route::post('/register', 'WebController@register');
 
 Route::get('/', 'WebController@homepage');
 Route::get('/Admin/Home', 'AdminController@AdminHome');
+Route::get('/Category/{id}', ['uses' => 'WebController@Category']);
 
 Route::get('/logout', 'WebController@logout');
 
 Route::get('/AuthorProfile', 'AuthorController@Profile');
 Route::get('/Settings', 'AuthorController@Settings');
 Route::get('/WriteArticle', 'AuthorController@WriteArticle');
+Route::get('/AuthorProfile/Edit/{id}', 'AuthorController@showEditArticle');
 Route::post('/saveArticle', 'AuthorController@saveArticle');
 Route::post('/savePic', 'AuthorController@savePic');
 Route::post('/updateprofile', 'AuthorController@updateprofile');

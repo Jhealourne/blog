@@ -94,6 +94,7 @@
 
   <div class="container">
     <div class="row">
+      <h4 class="display-4 lead">New Articles</h4>
       <div class="list-group">
         @foreach($article as $art)
         <a href="/Article/{{$art->article_id}}" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -107,6 +108,9 @@
           </div>
         </a>
         @endforeach
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+          <center><a href="#">See all</a></center>
+        </div>
       </div>
     </div>
   </div>

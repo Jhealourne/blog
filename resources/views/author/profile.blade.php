@@ -39,7 +39,11 @@
               <p class="card-text">{{$art->article_summary}}</p>
             </div>
             <div class="card-footer text-muted">
-              <button class="btn btn-success" type="button">Read more</button>
+              <a class="btn btn-success" href="">Read more</a>
+              <div class="float-right">
+                <a class="btn btn-info" href="/AuthorProfile/Edit/{{$art->article_id}}"><i class="oi oi-pencil"></i></a>
+                <a class="btn btn-danger" href="/AuthorProfile/Edit/{{$art->article_id}}"><i class="oi oi-trash"></i></a>
+              </div>
             </div>
           </div>
         </div>

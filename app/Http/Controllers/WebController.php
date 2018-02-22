@@ -21,8 +21,13 @@ class WebController extends Controller
 
     public function homepage(){
         $carousel = DB::table('article')->where('deleted',0)->orderByRaw("RAND()")->take(3)->get();
-        $article = DB::table('article')->orderby('publish_datetime','DESC')->where('deleted',0)->get();
+        $article = DB::table('article')->orderby('publish_datetime','DESC')->where('deleted',0)->take(10)->get();
     	return view('homepage',compact('article','carousel'));
+    }
+    public function Category($id){
+        $ctgry = DB::table('article')->where('category_id',$id)->get();
+        die();
+        return view('category',compact('ctgry'));
     }
 
     public function showSignin(){

@@ -74,7 +74,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             @foreach($variable as $var)
-            <a class="dropdown-item" href="#">{{$var->category_name}}</a>
+            <a class="dropdown-item" href="/Category/{{$var->category_id}}">{{$var->category_name}}</a>
             @endforeach
           </div>
         </li>
