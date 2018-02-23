@@ -68,7 +68,6 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
           <a class="dropdown-item" href="/WriteArticle">Write an article</a>
           <a class="dropdown-item" href="/AuthorProfile">Profile</a>
-          <a class="dropdown-item" href="/ManageArticle">Manage article</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="/Settings">Settings</a>
           <div class="dropdown-divider"></div>
@@ -99,22 +98,12 @@
     <script src="{{asset('bootstrap-4.0.0-beta.2/assets/js/vendor/popper.min.js')}}"></script>
     <script src="{{asset('bootstrap-4.0.0-beta.2/dist/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('textboxio-client/textboxio/textboxio.js')}}"></script>
-    <script src="{{asset('emotion-ratings-master/emotion-rating.min.js')}}"></script>
+    <script src="{{asset('emotion-ratings-master/emotion-ratings.js')}}"></script>
     <script src="{{asset('jquery-cookie-master/src/jquery.cookie.js')}}"></script>
 
   <script type="text/javascript">
     $(document).ready(function(){
       $('.dropdown-toggle').dropdown();
-      var emotionsArray = ['angry','disappointed','crying','meh', 'happy', 'laughing'];
-      // or a single one
-      // var emotionsArray = ['happy'];
-      $("#divrate").emotionsRating({
-        count: 6,
-        emotionSize: 60,
-        bgEmotion: 'happy',
-        emotions: emotionsArray,
-        color: '#FF0066' //the color must be expressed with a css code
-      });
     });
 
   </script>

@@ -16,7 +16,7 @@ hr {
 @endsection
 
 @section('content')
-
+<input type="hidden" name="articleid" value="{{$article->article_id}}">
 <div class="container" style="margin-top: 100px">
 	<div class="row">
 		<div class="col-sm-7">
@@ -54,23 +54,44 @@ hr {
 
 @section('script')
 <script type="text/javascript">
-	$(document).ready(function(){
-		$(document).on('change','.emoji-rating',function(){
-			alert();
-		});
-  	$.ajax
-      ({
-      	url: '/saveRating',
-      	type: 'post',
-      	data: {
-      		_token: "{{ Session::token() }}",
-      		user: $.cookie('userid'),
-      		// rate: $('input[name=rating]').val()
-      	},
-      	success:function(response){
-      		alert();
-      	}
-      });
+$(document).ready(function(){
+
+	var emotionsArray = ['angry','disappointed','crying','meh', 'happy', 'laughing'];
+      $("#divrate").emotionsRating({
+        count: 6,
+        emotionSize: 60,
+        bgEmotion: 'happy',
+        emotions: emotionsArray,
+        color: '#FF0066',
 	});
+	$('#divrate').click(function(){	
+		$.ajax
+		({
+			url: '/saveRating',
+			type: 'post',
+			data: {
+				_token: "{{ Session::token() }}",
+				user: $.cookie('userid'),
+				articleid: $('input[name=articleid]').val(),
+				rate: $('input[name=rating]').val(),
+			},
+			success:function(response){
+				// alert(response);
+			}
+		});
+	});
+		$.ajax
+		({
+			url: '/getRating',
+			type: 'get',
+			data: { 
+				user: $.cookie('userid'),
+				articleid: $('input[name=articleid]').val(),
+			},
+			success:function(response){
+	 			$('#divrate').find(".emotion-style").eq(response-1).click();
+			}
+		});
+ });
 </script>
 @endsection

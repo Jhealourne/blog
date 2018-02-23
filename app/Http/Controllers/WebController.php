@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 
+use App\Rating;
+use App\Article;
+use App\Category;
+
 class WebController extends Controller
 {
     public function showAdminLogin(Request $req){
@@ -25,9 +29,9 @@ class WebController extends Controller
     	return view('homepage',compact('article','carousel'));
     }
     public function Category($id){
-        $ctgry = DB::table('article')->where('category_id',$id)->get();
-        die();
-        return view('category',compact('ctgry'));
+        $article = Article::where('category_id',$id)->orderby('publish_datetime','DESC')->where('deleted',0)->get();
+        $ctgry = Category::where('category_id',$id)->first();
+        return view('category',compact('article','ctgry'));
     }
 
     public function showSignin(){
@@ -78,8 +82,22 @@ class WebController extends Controller
         return view('article',['article' => $article]);
     }
     public function saveRating(Request $req){
-        
+        if (Rating::where('article_id',$req->articleid)->where('userid',$req->user)->first()) {
+            Rating::where('article_id',$req->articleid)->where('userid',$req->user)->update([
+                'rate' => $req->rate ,
+            ]);
+        } else {
+            Rating::insert([
+                'article_id' => $req->articleid ,
+                'userid' => $req->user ,
+                'rate' => $req->rate ,
+            ]);
+        }
         return response()->json();
+    }
+    public function getRating(Request $req){
+        $var = Rating::where('article_id',$req->articleid)->where('userid',$req->user)->first();
+        return response()->json($var->rate);
     }
 }
 
