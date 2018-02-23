@@ -11,6 +11,6 @@ class Category extends Model
     public $timestamps = false;
 
     public function article(){
-    	return $this->hasMany('App\Article','category_id');
+    	return $this->hasMany('App\Article','category_id')->where('deleted',0)->orderby('publish_datetime','DESC')->take(4);
     }
 }

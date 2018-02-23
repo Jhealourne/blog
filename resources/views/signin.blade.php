@@ -41,7 +41,7 @@
 
 <body>
   <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">NewsBeat xD</a>
+        <a class="navbar-brand" href="/">NewsBeat xD</a>
         
   </nav>
 <title>Signin</title>

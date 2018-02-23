@@ -21,10 +21,7 @@
 	            </li>
 	          </div>
 	        </a>
-	        @endforeach
-	        <div class="list-group-item list-group-item-action flex-column align-items-start">
-	          <center><a href="#">See all</a></center>
-	        </div>
+	        @endforeach 
 	      </div>
 	     </div>
     </div>

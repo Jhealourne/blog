@@ -37,58 +37,32 @@
 
   <div class="container">
     <div class="row">
-      <div class="col">
+      @foreach($category as $cat)
+      <div class="col-sm-4" style="margin-top: 50px">
         <div class="card-deck">
-          <div class="card ">
-            <img class="card-img-top" src="img/cigarette.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title">tobacco excise tax</h4>
-                <p class="card-text">Labor, farmers appeal to bicam on tobacco excise tax</p>
-            </div>
-          </div>
           <div class="card">
-            <img class="card-img-top" src="img/Duterte-Marawi.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title">extend martial law for 1 more year</h4>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <div class="card-header lead">
+             {{$cat->category_name}}
             </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="img/Human-rights.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title">Human Rights</h4>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+            <div class="list-group list-group-flush">
+            @foreach($cat->article as $art)
+              @if($loop->first)   
+              <img class="card-img-top" src="/thumbnails/{{$art->article_thumbnail}}" alt="Card image cap" style="max-height: 250px; object-fit: cover;">
+              <div class="card-body">
+                <h4 class="card-title  font-weight-bold">{{$art->article_title}}</h4>
+                <!-- <div class="font-weight-light text-right"><small>This Article Makes People Happy</small></div> -->
+                <a href="/Article/{{$art->article_id}}" class="btn btn-outline-info float-right">Read More</a>
+              </div>
+              @else 
+              <a href="/Article/{{$art->article_id}}" class="list-group-item text-truncate font-weight-light" style="color: black">{{$art->article_title}}</a>
+              @endif
+            @endforeach
+              <button type="button" class="list-group-item text " style="color: black" onclick="location.href='/Category/{{$cat->category_id}}'"><i class="oi oi-caret-right"></i> More Articles</button>
             </div>
           </div>
         </div>      
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="card-deck">
-          <div class="card ">
-            <img class="card-img-top" src="img/cigarette.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title">tobacco excise tax</h4>
-                <p class="card-text">Labor, farmers appeal to bicam on tobacco excise tax</p>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="img/Duterte-Marawi.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title">extend martial law for 1 more year</h4>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="img/Human-rights.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title">Human Rights</h4>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-            </div>
-          </div>
-        </div>      
-      </div>
+      @endforeach
     </div>
   </div>
 

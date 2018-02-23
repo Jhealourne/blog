@@ -104,10 +104,9 @@
   <script type="text/javascript">
     $(document).ready(function(){
       $('.dropdown-toggle').dropdown();
+      // alert($.cookie('userid'));
     });
-
   </script>
-
 
     @yield('script')
   </body>

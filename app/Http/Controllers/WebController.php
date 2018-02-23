@@ -9,6 +9,7 @@ use Auth;
 use App\Rating;
 use App\Article;
 use App\Category;
+use App\Author;
 
 class WebController extends Controller
 {
@@ -26,7 +27,8 @@ class WebController extends Controller
     public function homepage(){
         $carousel = DB::table('article')->where('deleted',0)->orderByRaw("RAND()")->take(3)->get();
         $article = DB::table('article')->orderby('publish_datetime','DESC')->where('deleted',0)->take(10)->get();
-    	return view('homepage',compact('article','carousel'));
+        $category = Category::where('deleted',0)->get();
+        return view('homepage',compact('article','carousel','category'));
     }
     public function Category($id){
         $article = Article::where('category_id',$id)->orderby('publish_datetime','DESC')->where('deleted',0)->get();
@@ -47,6 +49,7 @@ class WebController extends Controller
     }
     public function logout(Request $request) {
 	  Auth::logout();
+      setcookie('userid', null, time() - 3600);
 	  return redirect('/Signin');
 	}
 
@@ -78,8 +81,11 @@ class WebController extends Controller
     }
 
     public function Article($id){
-        $article = DB::table('article as a')->where('a.article_id',$id)->join('author as au','au.author_id','=','a.author_id')->first();
-        return view('article',['article' => $article]);
+        $article = Article::where('article_id',$id)->first();
+        $rate = Rating::where('article_id',$id)->first();  
+        echo $rate->rate;
+        die(); 
+        return view('article',compact('article'));
     }
     public function saveRating(Request $req){
         if (Rating::where('article_id',$req->articleid)->where('userid',$req->user)->first()) {
