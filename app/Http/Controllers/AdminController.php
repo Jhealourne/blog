@@ -7,6 +7,12 @@ use App\Http\Controllers\Controller;
 use DB;
 use Auth;
 
+use App\Users;
+use App\Rating;
+use App\Article;
+use App\Category;
+use App\Author;
+
 class AdminController extends Controller
 {
     public function __construct()
@@ -18,7 +24,7 @@ class AdminController extends Controller
     }
 
     public function category(Request $req){
-    	$ctgry = DB::table('category')->where('status',0)->get();
+    	$ctgry = DB::table('category')->where('deleted',0)->get();
     	return view('admin.category',compact('ctgry'));
     }
     public function addCategory(Request $req){
@@ -36,5 +42,10 @@ class AdminController extends Controller
     public function getCategory(Request $req){
     	$var = DB::table('category')->where('category_id',$req->cid)->first();
     	return response()->json($var);
+    }
+
+    public function Users(){
+        $users = Users::where('deleted',0)->where('id','!=',1)->get();
+        return view('admin.users',compact('users'));
     }
 }

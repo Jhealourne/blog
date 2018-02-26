@@ -13,4 +13,9 @@ class Author extends Model
     public function article(){
     	return $this->hasMany('App\Article','author_id');
     }
+    
+    public function users(){
+    	return $this->hasMany('App\Users','author_id');
+    }
+
 }

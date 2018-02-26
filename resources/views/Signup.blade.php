@@ -14,8 +14,9 @@
 
       <!-- Custom styles for this template -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+      <link href="{{asset('open-iconic-master/font/css/open-iconic-bootstrap.css')}}" rel="stylesheet">
       <link  rel="icon" type="image/ico" href = "icon.ico">
-<link  rel="icon" type="image/ico" href = "icon.ico">
+      <link  rel="icon" type="image/ico" href = "icon.ico">
 
       <link href="design2.css" rel="stylesheet" >
       <link href="open-iconic-master/font/css/open-iconic-foundation.css" rel="stylesheet">
@@ -29,7 +30,7 @@
 
 <div class="page-header">
   <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">NewsBeat xD</a>     
+    <a class="navbar-brand" href="/">NewsBeat xD</a>     
   </nav>
 
 	<h1><center><strong>Sign-Up</strong></center></h1>
@@ -47,7 +48,7 @@
             <label class="col-sm-10 control-label">First Name</label>  
             <div class="col-sm-10 inputGroupContainer">
               <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <span class="input-group-addon"><i class="oi oi-person"></i></span>
                 <input  name="first_name" placeholder="First Name" class="form-control"  type="text">
               </div>
             </div>
@@ -59,7 +60,7 @@
             <label class="col-sm-10 control-label" >Last Name</label> 
             <div class="col-sm-10 inputGroupContainer">
               <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <span class="input-group-addon"><i class="oi oi-person"></i></span>
                 <input name="last_name" placeholder="Last Name" class="form-control"  type="text">
               </div>
             </div>
@@ -69,7 +70,7 @@
             <label class="col-sm-10 control-label" >Display Name</label> 
             <div class="col-sm-10 inputGroupContainer">
               <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <span class="input-group-addon"><i class="oi oi-person"></i></span>
                 <input name="display_name" placeholder="Display Name" class="form-control"  type="text">
               </div>
             </div>
@@ -79,7 +80,7 @@
             <label class="col-sm-10 control-label">Username</label>  
             <div class="col-sm-10 inputGroupContainer">
               <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <span class="input-group-addon"><i class="oi oi-person"></i></span>
                 <input  name="user_name" placeholder="Username" class="form-control"  type="text">
               </div>
             </div>
@@ -91,7 +92,7 @@
             <label class="col-sm-10 control-label" >Password</label> 
             <div class="col-sm-10 inputGroupContainer">
               <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <span class="input-group-addon"><i class="oi oi-key"></i></span>
                 <input name="user_password" placeholder="Password" class="form-control"  type="password">
               </div>
             </div>
@@ -103,7 +104,7 @@
             <label class="col-sm-10 control-label" >Confirm Password</label> 
             <div class="col-sm-10 inputGroupContainer">
               <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <span class="input-group-addon"><i class="oi oi-key"></i></span>
                 <input name="confirm_password" placeholder="Confirm Password" class="form-control"  type="password">
               </div>
             </div>
@@ -114,7 +115,7 @@
             <label class="col-sm-10 control-label">E-Mail</label>  
             <div class="col-sm-10 inputGroupContainer">
               <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                <span class="input-group-addon">@</span>
                 <input name="email" placeholder="E-Mail Address" class="form-control"  type="text">
               </div>
             </div>
@@ -125,7 +126,7 @@
             <label class="col-sm-10 control-label">Contact No.</label>  
             <div class="col-sm-10 inputGroupContainer">
               <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                <span class="input-group-addon"><i class="oi oi-phone"></i></span>
                 <input name="contact_no" placeholder="(639)" class="form-control" type="text">
               </div>
             </div>

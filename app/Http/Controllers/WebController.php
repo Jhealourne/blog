@@ -25,8 +25,8 @@ class WebController extends Controller
     }
 
     public function homepage(){
-        $carousel = DB::table('article')->where('deleted',0)->orderByRaw("RAND()")->take(3)->get();
-        $article = DB::table('article')->orderby('publish_datetime','DESC')->where('deleted',0)->take(10)->get();
+        $carousel = Article::where('deleted',0)->orderByRaw("RAND()")->take(3)->get();
+        $article = Article::orderby('publish_datetime','DESC')->where('deleted',0)->take(10)->get();
         $category = Category::where('deleted',0)->get();
         return view('homepage',compact('article','carousel','category'));
     }
@@ -64,7 +64,7 @@ class WebController extends Controller
         } else {
             $filename = "profileicon.jpg";
         }
-    	$auid = DB::table('author')->insertGetId([
+    	$auid = Author::insertGetId([
     		'first_name' => $req->first_name,
     		'last_name' => $req->last_name,
     		'display_name' => $req->display_name,
@@ -82,10 +82,10 @@ class WebController extends Controller
 
     public function Article($id){
         $article = Article::where('article_id',$id)->first();
-        $rate = Rating::where('article_id',$id)->first();  
-        echo $rate->rate;
-        die(); 
-        return view('article',compact('article'));
+        $rate = Rating::groupBy('rate')->where('article_id',$id)->orderBy('count', 'desc')->get(['rate', DB::raw('count(rate) as count')]);
+        echo $rate;
+        die();
+        return view('article',compact('article','rate'));
     }
     public function saveRating(Request $req){
         if (Rating::where('article_id',$req->articleid)->where('userid',$req->user)->first()) {

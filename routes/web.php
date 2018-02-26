@@ -50,3 +50,4 @@ Route::post('/addCategory', 'AdminController@addCategory');
 Route::post('/editCategory', 'AdminController@editCategory');
 Route::post('/delCategory', 'AdminController@delCategory');
 
+Route::get('/Admin/Users','AdminController@USers');

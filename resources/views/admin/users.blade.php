@@ -1,38 +1,41 @@
 @extends('layouts.admin')
 
 @section('content')
+
 <div class="container">
-	<h4 class="display-4 font-weight-bold">Category</h4>
-	<div class="row">
+	<h4 class="display-4 font-weight-bold">Users</h4>
+<!-- 	<div class="row">
 		<div class="col">
 			<button type="button" class="btn btn-success" id="add">ADD <i class="oi oi-plus"></i></button>
 		</div>
-	</div>
+	</div> -->
 	<div class="row">
 		<div class="col">
 			<table class="table table-striped">
-				<caption>List of Categories</caption>
+				<caption>List of Users</caption>
 				<thead class="thead-dark">
-					<th>Category Name</th>
+					<th>Username</th>
+					<th>Name</th>
 					<th style="width: 20%">Actions</th>
 				</thead>
 				<tbody>
-					@foreach($ctgry as $ctgry)
-					<tr>
-						<td>{{$ctgry->category_name}}</td>
-						<td>
-							<button type="button" class="btn btn-info edit" value="{{$ctgry->category_id}}"><i class="oi oi-pencil"></i></button>
-							<button type="button" class="btn btn-danger del" value="{{$ctgry->category_id}}"><i class="oi oi-trash"></i></button>
-						</td>
-					</tr>
-					@endforeach
+				@foreach($users as $user)
+				<tr>
+					<td>{{$user->username}}</td>
+					<td>{{$user->author->display_name}}</td>
+					<td>
+						<!-- <button class="btn btn-info" type="button" value="{{$user->id}}"><i class="oi oi-pencil"></i></button> -->
+						<button class="btn btn-danger del" type="button" value="{{$user->id}}"><i class="oi oi-trash"></i></button>
+					</td>
+				</tr>
+				@endforeach
 				</tbody>
 			</table>
 		</div>
 	</div>
 </div>
 
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -57,12 +60,12 @@
         </form>
     </div>
   </div>
-</div>
+</div> -->
 <div class="modal fade" id="del">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -71,7 +74,7 @@
       	<p>Delete?</p>
       </div>
       <div class="modal-footer">
-        <form method="post" action="/delCategory">
+        <form method="post" action="/delUser">
         	{{csrf_field()}}
         	<input type="hidden" name="id">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -85,34 +88,11 @@
 
 @section('script')
 <script type="text/javascript">
-	$(function(){
-		$('#add').click(function(){
-	        $('#addModal form').trigger('reset').attr('action','/addCategory');
-	        $('#addModal .modal-title').text('Add Category');
-			$('#addModal').modal();
-		});
-		$('.edit').click(function(){
-	        $('#addModal form').trigger('reset').attr('action','/editCategory');
-	        $('#addModal .modal-title').text('Edit Category');
-			$.ajax
-			({
-				url: '/getCategory',
-				type: 'get',
-				data: { cid : $(this).val() },
-				success:function(response){
-					$('input[name=id]').val(response.category_id);
-					$('input[name=ctgry]').val(response.category_name);
-				},
-				complete:function(){
-					$('#addModal').modal();
-				}
-			});
-		});
-		$('.del').click(function(){
-	        $('#del form input[name=id]').val($(this).val());
-	        $('#del').modal();
-		});
+$(function(){
+	$('.del').click(function(){
+		$('#del').modal();
+		$('#del form input[name=id]').val($(this).val());
 	});
+});
 </script>
-
 @endsection
