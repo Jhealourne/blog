@@ -79,7 +79,10 @@ class WebController extends Controller
         // $rate = Rating::groupBy('rate')->where('article_id',$id)->orderBy('count', 'desc')->get(['rate', DB::raw('count(rate) as count')]);
         $rate = Rating::where('article_id',$id)->get(); 
         $comments = Comments::where('article_id',$id)->get();
-        return view('article',compact('article','rate','comments'));
+        if (Auth::check()) {
+            $rt = Rating::where('article_id',$id)->where('userid',Auth::user()->author_id)->first()->rate;
+        }
+        return view('article',compact('article','rate','comments','rt'));
     }
     public function saveRating(Request $req){
         if (Rating::where('article_id',$req->articleid)->where('userid',Auth::user()->author_id)->first()) {

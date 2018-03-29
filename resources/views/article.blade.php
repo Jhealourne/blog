@@ -91,23 +91,23 @@ hr {
           {!!$article->article_full!!} 
           <br>
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-outline-primary rate">
+                <label class="btn btn-outline-primary rate @if($rt == 1) active @endif">
                     <span class="fas fa-thumbs-up">
                     <input type="radio" value="1" name="options" id="option1" autocomplete="off"> Like (<span class="counter">{{$rate->where('rate',1)->count()}}</span>)
                 </label></span>
-                <label class="btn btn-outline-secondary rate">
+                <label class="btn btn-outline-secondary rate @if($rt == 2) active @endif">
                     <span class="fas fa-thumbs-down">
                     <input type="radio" value="2" name="options" id="option2" autocomplete="off"> Dislike (<span class="counter">{{$rate->where('rate',2)->count()}}</span>)
                 </label></span>
-                <label class="btn btn-outline-danger rate">
+                <label class="btn btn-outline-danger rate @if($rt == 3) active @endif">
                     <span class="fas fa-heart">
                     <input type="radio" value="3" name="options" id="option3" autocomplete="off"> Love (<span class="counter">{{$rate->where('rate',3)->count()}}</span>)
                 </label></span>
-                <label class="btn btn-outline-warning rate">
+                <label class="btn btn-outline-warning rate @if($rt == 4) active @endif">
                     <span class="fas fa-smile">
                     <input type="radio" value="4" name="options" id="option4" autocomplete="off"> Happy (<span class="counter">{{$rate->where('rate',4)->count()}}</span>)
                 </label></span>
-                <label class="btn btn-outline-info rate">
+                <label class="btn btn-outline-info rate @if($rt == 5) active @endif">
                     <span class="fas fa-frown">
                     <input type="radio" value="5" name="options" id="option5" autocomplete="off"> Sad (<span class="counter">{{$rate->where('rate',5)->count()}}</span>)
                 </label></span>
