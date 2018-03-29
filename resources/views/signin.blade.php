@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+    <link rel="icon" href="news-logo.ico">
 
     <title>SIGNIN</title>
 
@@ -44,12 +44,12 @@
 
 <body>
   <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">NewsBeat xD</a>      
+        <a class="navbar-brand mb-0 h1" href="/">NewsBeat xD</a>      
   </nav>
   <legend>Signin</legend>
       <div class="container" style="margin-top: 100px">
         <div class="row">
-        <img src="/img/pipol.png" alt="INSERT LOGO" style="height: 300px" >
+        <img src="news-logo.jpg" alt="INSERT LOGO" style="height: 300px" >
         <div class="col-md-offset-2 col-md-8" style="margin-left: auto">
           <form class="form-horizontal" method="post" action="/login">
            {{ csrf_field() }}
@@ -66,7 +66,7 @@
                 </div>
               </div>
               <div class="col-sm-10">
-                  <button type="submit" class="btn btn-info" name="login"><i class="fa fa-sign-in" aria-hidden="true"></i>Log In</button>
+                  <button type="submit" class="btn btn-info" name="login">Log In <i class="fa fa-sign-in" aria-hidden="true"></i></button>
               </div>
               <div class="bottom text-center">
                 New here ? <a href="{{ route('Signup') }}"><b>Join Us</b></a>

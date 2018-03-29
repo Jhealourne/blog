@@ -17,5 +17,8 @@ class Author extends Model
     public function users(){
     	return $this->hasMany('App\Users','author_id');
     }
+    public function comments(){
+    	return $this->hasMany('App\Comments','author_id');
+    }
 
 }

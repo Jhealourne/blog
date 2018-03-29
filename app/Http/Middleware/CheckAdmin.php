@@ -15,11 +15,8 @@ class CheckAdmin
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
-        if(!Auth::check()){
-            return redirect('/AdminLogin');
-        }
-        if (Auth::user()->usertype != 1) {
+    { 
+        if (!Auth::check() || Auth::user()->usertype != 1) {
             return redirect('/Signin');
         }
         return $next($request);

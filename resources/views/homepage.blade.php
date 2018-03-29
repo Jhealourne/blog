@@ -49,7 +49,7 @@
               @if($loop->first)   
               <img class="card-img-top" src="/thumbnails/{{$art->article_thumbnail}}" alt="Card image cap" style="max-height: 250px; object-fit: cover;">
               <div class="card-body">
-                <h4 class="card-title  font-weight-bold">{{$art->article_title}}</h4>
+                <h4 class="card-title font-weight-bold">{{$art->article_title}}</h4><p style="font-weight: lighter; text-align: right;">{{date_create($art->publish_datetime)->format('M d, Y h:i a')}}</p>
                 <!-- <div class="font-weight-light text-right"><small>This Article Makes People Happy</small></div> -->
                 <a href="/Article/{{$art->article_id}}" class="btn btn-outline-info float-right">Read More</a>
               </div>
@@ -80,6 +80,7 @@
                   <p>{{$art->article_summary}}</p>
             </li>
           </div>
+          <div style="position: absolute;bottom: 10px; right: 20px; font-weight: lighter;">Date Published: {{date_create($art->publish_datetime)->format('M d, Y h:i a')}}</div>
         </a>
         @endforeach
         <div class="list-group-item list-group-item-action flex-column align-items-start">

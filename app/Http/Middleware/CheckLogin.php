@@ -16,12 +16,9 @@ class CheckLogin
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
-        if(!Auth::check()){
+    { 
+        if (!Auth::check() || Auth::user()->usertype != 0) {
             return redirect('/Signin');
-        }
-        if (Auth::user()->usertype != 0) {
-            return redirect('/');
         }
         return $next($request);
     }

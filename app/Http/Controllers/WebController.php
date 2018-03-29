@@ -10,20 +10,10 @@ use App\Rating;
 use App\Article;
 use App\Category;
 use App\Author;
+use App\Comments;
 
 class WebController extends Controller
-{
-    public function showAdminLogin(Request $req){
-        return view('adminlogin');
-    }
-    public function doAdminLogin(Request $req){
-        if(Auth::attempt(['username'=> $req->username,'password'=> $req->password, 'usertype' => 1, 'deleted' => 0])){
-            return redirect('/Admin/Home');
-        } else {
-            return redirect('/AdminLogin');
-        }
-    }
-
+{ 
     public function homepage(){
         $carousel = Article::where('deleted',0)->orderByRaw("RAND()")->take(3)->get();
         $article = Article::orderby('publish_datetime','DESC')->where('deleted',0)->take(10)->get();
@@ -40,9 +30,13 @@ class WebController extends Controller
     	return view('signin');
     }
     public function login(Request $req){
-        if(Auth::attempt(['username'=> $req->username,'password'=> $req->password, 'usertype' => 0, 'deleted' => 0])){
+        if(Auth::attempt(['username'=> $req->username,'password'=> $req->password, 'deleted' => 0])){
             setcookie('userid',Auth::id());
-        	return redirect('/');
+            if (Auth::user()->usertype == 1) {
+                return redirect('/Admin/Home');
+            } else {
+                return redirect('/');
+            }
         } else {
         	return redirect('/Signin');
         }
@@ -82,10 +76,10 @@ class WebController extends Controller
 
     public function Article($id){
         $article = Article::where('article_id',$id)->first();
-        $rate = Rating::groupBy('rate')->where('article_id',$id)->orderBy('count', 'desc')->get(['rate', DB::raw('count(rate) as count')]);
-        echo $rate;
-        die();
-        return view('article',compact('article','rate'));
+        // $rate = Rating::groupBy('rate')->where('article_id',$id)->orderBy('count', 'desc')->get(['rate', DB::raw('count(rate) as count')]);
+        $rate = Rating::where('article_id',$id)->get(); 
+        $comments = Comments::where('article_id',$id)->get();
+        return view('article',compact('article','rate','comments'));
     }
     public function saveRating(Request $req){
         if (Rating::where('article_id',$req->articleid)->where('userid',$req->user)->first()) {

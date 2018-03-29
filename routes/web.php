@@ -39,10 +39,7 @@ Route::post('/savePic', 'AuthorController@savePic');
 Route::post('/updateprofile', 'AuthorController@updateprofile');
 
 Route::get('/Article/{id}', ['uses' => 'WebController@Article']);
-Route::get('/ManageArticle', 'AuthorController@ManageArticle');
-
-Route::get('/AdminLogin', 'WebController@showAdminLogin');
-Route::post('/doLoginAdmin', 'WebController@doAdminLogin');
+Route::post('/addComment', 'AuthorController@addComment');
 
 Route::get('/Admin/Category', 'AdminController@category');
 Route::get('/getCategory', 'AdminController@getCategory');

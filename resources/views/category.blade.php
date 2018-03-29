@@ -20,6 +20,7 @@
 	                  <p>{{$art->article_summary}}</p>
 	            </li>
 	          </div>
+          	<div style="position: absolute;bottom: 10px; right: 20px; font-weight: lighter;">Date Published: {{date_create($art->publish_datetime)->format('M d, Y h:i a')}}</div>
 	        </a>
 	        @endforeach 
 	      </div>

@@ -76,7 +76,7 @@ hr {
 
 @section('content')
 <input type="hidden" name="articleid" value="{{$article->article_id}}">
-<div class="container" style="margin-top: 100px">
+<div class="container" style="margin-top: 60px">
 	<div class="row">
 		<div class="col-sm-7">
 			<img src="/thumbnails/{{$article->article_thumbnail}}" class="img-fluid img-thumbnail" alt="Responsive image">
@@ -86,9 +86,37 @@ hr {
 
 			<div class="float-left"><img src="/profile/{{$article->author->prof_pic}}" width="50" height="50" class="rounded" style="margin-right: 10px"></div>
           <h6><strong>{{ $article->author->first_name.' '.$article->author->last_name}}</strong></h6>
-          <h7 class="mb-2 text-muted">Published {{ date_create($article->publish_datetime)->format('M d Y, h:i a')}}</h7>
+          <h7 class="mb-2 text-muted">Date Published: {{ date_create($article->publish_datetime)->format('M d Y, h:i a')}}</h7>
           <hr>
-          {!!$article->article_full!!}
+          {!!$article->article_full!!} 
+          <br>
+			<form method="POST" action="/addComment">
+				{{csrf_field()}}
+				<input type="hidden" name="aid" value="{{$article->article_id}}"> 
+			    <div class="form-group">
+			        <textarea id="comment" rows="6" class="form-control" name="comment" required></textarea>
+			    </div>
+			    <div class="form-group">
+			        <button type="submit" class="btn btn-success btn-lg btn-block">POST COMMENT</button>
+			    </div>
+			</form>
+
+            <h4><b>Comments:</b></h4>
+            @if(count($comments) == 0)
+            	<center><h3>No Comments Available</h3></center>
+           	@else 
+	            @foreach($comments->all() as $comment)
+	                <p><span class="lead">{{ $comment->comment }}</span> <br>
+	               	
+	               	<small>
+	               		Posted by: {{ $comment->author->first_name.' '.$comment->author->last_name }}<br>
+	               		Date posted: {{  date_create($comment->created_at)->format('M d, Y h:i a') }}
+	               	</small>
+	               	</p>
+	                <hr/>
+	            @endforeach
+           	@endif
+
 		</div>
 		<div class="col-sm-5">
 			<div class="card">
@@ -104,35 +132,15 @@ hr {
 			    	</div></center>
 			    </p>
 			    <ol>
-			    	<li><a class="circular red"></a> Angry </li>
-			    	<li><a class="circular sad"></a> Sad </li>
-			    	<li><a class="circular cry"></a> Crying </li>
-			    	<li><a class="circular gray"></a> Don't Care </li>
-			    	<li><a class="circular happy"></a> Happy </li>
-			    	<li><a class="circular laugh"></a> Laughing </li>
-			    </ol>
-			    Overall Rating:
-				<div class="progress">
-				  <div class="progress-bar bg-sad w-25" role="progressbar"></div>
-				  <div class="progress-bar bg-cry w-25" role="progressbar"></div>
-				</div>
+			    	<li>({{$rate->where('rate',1)->count()}}) Angry </li>
+			    	<li>({{$rate->where('rate',2)->count()}}) Sad </li>
+			    	<li>({{$rate->where('rate',3)->count()}}) Crying </li>
+			    	<li>({{$rate->where('rate',4)->count()}}) Don't Care </li>
+			    	<li>({{$rate->where('rate',5)->count()}}) Happy </li>
+			    	<li>({{$rate->where('rate',6)->count()}}) Laughing </li>
+			    </ol> 
 			  </div>
-			  <div class="card-footer text-center font-weight-normal">
-			  	@if(!isset($rate))
-			  		People are Divided in this Article
-			  	@elseif($rate->rate == 2)
-			  		This Article Makes People Disappointed 
-			  	@elseif($rate->rate == 3)
-			  		This Article Makes People Crying 
-			  	@elseif($rate->rate == 4)
-			  		This Article Makes People Don't Care 
-			  	@elseif($rate->rate == 5)
-			  		This Article Makes People Happy 
-			  	@elseif($rate->rate == 6)
-			  		This Article Makes People Laughing 
-			  	@elseif($rate->rate == 1)
-			  		This Article Makes People Angry 
-			  	@endif
+			  <div class="card-footer text-center font-weight-normal"> 
 			  </div>
 			</div>
 		</div>

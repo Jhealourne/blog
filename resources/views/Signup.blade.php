@@ -30,7 +30,7 @@
 
 <div class="page-header">
   <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">NewsBeat xD</a>     
+    <a class="navbar-brand mb-0 h1" href="/">NewsBeat xD</a>     
   </nav>
 
 	<h1><center><strong>Sign-Up</strong></center></h1>

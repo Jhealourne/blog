@@ -10,6 +10,7 @@ use DB;
 use App\Category;
 use App\Article;
 use App\Author;
+use App\Comments;
 
 class AuthorController extends Controller
 {
@@ -78,8 +79,13 @@ class AuthorController extends Controller
         //     'author_id' => $auid,
         // ]);
         return redirect('/AuthorProfile');
-    }
-    public function ManageArticle(){
-        return view('author.manage');
+    } 
+    public function addComment(Request $req){
+        Comments::insert([
+            'author_id' => Auth::user()->author_id,
+            'article_id' => $req->aid,
+            'comment' => $req->comment
+        ]);
+        return redirect('/Article/'.$req->aid);
     }
 }
