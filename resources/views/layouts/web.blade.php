@@ -19,6 +19,7 @@
   <link href="{{asset('design2.css')}}" rel="stylesheet" >
   <link href="{{asset('open-iconic-master/font/css/open-iconic-bootstrap.css')}}" rel="stylesheet">
 
+    <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
   <style type="text/css">
     .row{
       margin-top: 40px;

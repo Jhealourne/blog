@@ -90,6 +90,28 @@ hr {
           <hr>
           {!!$article->article_full!!} 
           <br>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-outline-primary rate">
+                    <span class="fas fa-thumbs-up">
+                    <input type="radio" value="1" name="options" id="option1" autocomplete="off"> Like (<span class="counter">{{$rate->where('rate',1)->count()}}</span>)
+                </label></span>
+                <label class="btn btn-outline-secondary rate">
+                    <span class="fas fa-thumbs-down">
+                    <input type="radio" value="2" name="options" id="option2" autocomplete="off"> Dislike (<span class="counter">{{$rate->where('rate',2)->count()}}</span>)
+                </label></span>
+                <label class="btn btn-outline-danger rate">
+                    <span class="fas fa-heart">
+                    <input type="radio" value="3" name="options" id="option3" autocomplete="off"> Love (<span class="counter">{{$rate->where('rate',3)->count()}}</span>)
+                </label></span>
+                <label class="btn btn-outline-warning rate">
+                    <span class="fas fa-smile">
+                    <input type="radio" value="4" name="options" id="option4" autocomplete="off"> Happy (<span class="counter">{{$rate->where('rate',4)->count()}}</span>)
+                </label></span>
+                <label class="btn btn-outline-info rate">
+                    <span class="fas fa-frown">
+                    <input type="radio" value="5" name="options" id="option5" autocomplete="off"> Sad (<span class="counter">{{$rate->where('rate',5)->count()}}</span>)
+                </label></span>
+            </div>
 			<form method="POST" action="/addComment">
 				{{csrf_field()}}
 				<input type="hidden" name="aid" value="{{$article->article_id}}"> 
@@ -118,32 +140,17 @@ hr {
            	@endif
 
 		</div>
-		<div class="col-sm-5">
+		<!-- <div class="col-sm-5">
 			<div class="card">
 			  <h5 class="card-header">Rate this article</h5>
-			  <div class="card-body">
-			    <!-- <h5 class="card-title">Special title treatment</h5> -->
-			    <p class="card-text">
-			    	<center><div style=" position: relative;text-align: center;">
-			    		<div id="divrate"></div>
-			    		@if(!isset($_COOKIE['userid']))
-			    		<p class="text lead" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">Login to rate this article</p>
-			    		@endif
-			    	</div></center>
-			    </p>
-			    <ol>
-			    	<li>({{$rate->where('rate',1)->count()}}) Angry </li>
-			    	<li>({{$rate->where('rate',2)->count()}}) Sad </li>
-			    	<li>({{$rate->where('rate',3)->count()}}) Crying </li>
-			    	<li>({{$rate->where('rate',4)->count()}}) Don't Care </li>
-			    	<li>({{$rate->where('rate',5)->count()}}) Happy </li>
-			    	<li>({{$rate->where('rate',6)->count()}}) Laughing </li>
+			  <div class="card-body"> 
+			
+			    <ol> 
 			    </ol> 
 			  </div>
-			  <div class="card-footer text-center font-weight-normal"> 
-			  </div>
+
 			</div>
-		</div>
+		</div> -->
 	</div>
 </div>
 
@@ -153,48 +160,26 @@ hr {
 <script type="text/javascript">
 $(document).ready(function(){
 
-	var emotionsArray = ['angry','disappointed','crying','meh', 'happy', 'laughing'];
-      $("#divrate").emotionsRating({
-        count: 6,
-        emotionSize: 60,
-        bgEmotion: 'happy',
-        emotions: emotionsArray,
-        color: '#FF0066',
-	});
-	$('#divrate').click(function(e){	
-		if ($.cookie('userid')) {
-			$.ajax
-			({
-				url: '/saveRating',
-				type: 'post',
-				data: {
-					_token: "{{ Session::token() }}",
-					user: $.cookie('userid'),
-					articleid: $('input[name=articleid]').val(),
-					rate: $('input[name=rating]').val(),
-				},
-				success:function(response){
-					// alert(response);
-				}
-			});
-		} 
-	});
-	if ($.cookie('userid')) {
-		$.ajax
-		({
-			url: '/getRating',
+
+    $('.rate').click(function(){ 
+        var rate = $(this).find('input').val();
+        $.ajax({
+            url : '/saveRating',
 			type: 'get',
-			data: { 
-				user: $.cookie('userid'),
-				articleid: $('input[name=articleid]').val(),
-			},
-			success:function(response){
-	 			$('#divrate').find(".emotion-style").eq(response-1).click();
-			}
-		});
-	} else {
-		$('#divrate').css('pointer-events','none').css('filter','blur(2px)');
-	}
+            data : { 
+                rate : rate,
+                articleid : {{$article->article_id}},
+            },
+            success:function(response){ 
+                if (response == 0) {
+                    $('input[name=options][value='+rate+']').next().html(Number($('input[name=options][value='+rate+']').next().text()) + 1);
+                } else {
+                    $('input[name=options][value='+rate+']').next().html(Number($('input[name=options][value='+rate+']').next().text()) + 1);
+                    $('input[name=options][value='+response+']').next().html(Number($('input[name=options][value='+response+']').next().text()) - 1);
+                }
+            }
+        });
+    });
  });
 </script>
 @endsection

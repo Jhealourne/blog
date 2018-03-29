@@ -82,16 +82,19 @@ class WebController extends Controller
         return view('article',compact('article','rate','comments'));
     }
     public function saveRating(Request $req){
-        if (Rating::where('article_id',$req->articleid)->where('userid',$req->user)->first()) {
-            Rating::where('article_id',$req->articleid)->where('userid',$req->user)->update([
+        if (Rating::where('article_id',$req->articleid)->where('userid',Auth::user()->author_id)->first()) {
+            $rate = Rating::where('article_id',$req->articleid)->where('userid',Auth::user()->id)->first()->rate;
+            Rating::where('article_id',$req->articleid)->where('userid',Auth::user()->author_id)->update([
                 'rate' => $req->rate ,
             ]);
+            return response()->json($rate);
         } else {
             Rating::insert([
                 'article_id' => $req->articleid ,
-                'userid' => $req->user ,
+                'userid' => Auth::user()->author_id ,
                 'rate' => $req->rate ,
             ]);
+            return response()->json(0);
         }
         return response()->json();
     }

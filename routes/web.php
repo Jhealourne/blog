@@ -25,7 +25,7 @@ Route::post('/register', 'WebController@register');
 Route::get('/', 'WebController@homepage');
 Route::get('/Admin/Home', 'AdminController@AdminHome');
 Route::get('/Category/{id}', ['uses' => 'WebController@Category']);
-Route::post('/saveRating', 'WebController@saveRating');
+Route::get('/saveRating', 'WebController@saveRating');
 Route::get('/getRating', 'WebController@getRating');
 
 Route::get('/logout', 'WebController@logout');
