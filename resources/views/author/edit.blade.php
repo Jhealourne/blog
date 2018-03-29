@@ -1,28 +1,29 @@
 @extends('layouts.web')
 
-@section('title','Write')
+@section('title','Edit')
 
 @section('content')
   <div class="container" style="margin-bottom: 100px">
     <div class="row">
       <div class="col-sm-10">
-        <form method="post" action="/saveArticle" enctype="multipart/form-data">
+        <form method="post" action="/editArticle" enctype="multipart/form-data">
           {{ csrf_field() }}
+          <input type="hidden" name="id" value="{{$article->article_id}}">
           <div class="form-group">
             <label for="exampleFormControlFile1">Choose thumbnail</label>
             <input type="file" class="form-control-file" id="exampleFormControlFile1" name="thumbnail">
           </div>
           <div class="form-group"> 
             <label>Title</label>
-            <input type="text" class="form-control form-control-lg" placeholder="Title" name="title">
+            <input type="text" class="form-control form-control-lg" placeholder="Title" name="title" value="{{$article->article_title}}">
           </div>
           <div class="form-group"> 
             <label>Summary</label>
-            <input type="text" class="form-control" placeholder="Summary" name="summary">
+            <input type="text" class="form-control" placeholder="Summary" name="summary" value="{{$article->article_summary}}">
           </div>
           <div class="form-group"> 
             <label>Category</label>
-            <select class="form-control" name="ctgry">
+            <select class="form-control" name="ctgry" value="{{$article->category_id}}">
               @foreach($ctgry as $ctgry)
               <option value="{{$ctgry->category_id}}">{{$ctgry->category_name}}</option>
               @endforeach
@@ -30,7 +31,7 @@
           </div>
           <div class="form-group">
             <label>Article</label>
-            <textarea class="form-control" id="mytextarea" placeholder="Write your article....." rows="10" name="article"></textarea>
+            <textarea class="form-control" id="mytextarea" placeholder="Write your article....." rows="10" name="article">{{$article->article_full}}</textarea>
           </div>
 
           <button type="submit" class="btn btn-success">Save</button>

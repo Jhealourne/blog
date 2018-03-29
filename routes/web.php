@@ -23,15 +23,19 @@ Route::post('/login', 'WebController@login');
 Route::post('/register', 'WebController@register');
 
 Route::get('/', 'WebController@homepage');
-Route::get('/AdminHome', 'AdminController@AdminHome');
+Route::get('/Admin/Home', 'AdminController@AdminHome');
+Route::get('/Category/{id}', ['uses' => 'WebController@Category']);
+Route::post('/saveRating', 'WebController@saveRating');
+Route::get('/getRating', 'WebController@getRating');
 
 Route::get('/logout', 'WebController@logout');
 
-Route::get('/AuthorHome', 'AuthorController@AuthorHome');
 Route::get('/AuthorProfile', 'AuthorController@Profile');
 Route::get('/Settings', 'AuthorController@Settings');
 Route::get('/WriteArticle', 'AuthorController@WriteArticle');
+Route::get('/AuthorProfile/Edit/{id}', 'AuthorController@showEditArticle');
 Route::post('/saveArticle', 'AuthorController@saveArticle');
+Route::post('/savePic', 'AuthorController@savePic');
 Route::post('/updateprofile', 'AuthorController@updateprofile');
 
 Route::get('/Article/{id}', ['uses' => 'WebController@Article']);
@@ -40,3 +44,10 @@ Route::get('/ManageArticle', 'AuthorController@ManageArticle');
 Route::get('/AdminLogin', 'WebController@showAdminLogin');
 Route::post('/doLoginAdmin', 'WebController@doAdminLogin');
 
+Route::get('/Admin/Category', 'AdminController@category');
+Route::get('/getCategory', 'AdminController@getCategory');
+Route::post('/addCategory', 'AdminController@addCategory');
+Route::post('/editCategory', 'AdminController@editCategory');
+Route::post('/delCategory', 'AdminController@delCategory');
+
+Route::get('/Admin/Users','AdminController@USers');

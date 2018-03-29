@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
-use DB;
 
-class CheckLogin
+class CheckAdmin
 {
     /**
      * Handle an incoming request.
@@ -18,10 +17,10 @@ class CheckLogin
     public function handle($request, Closure $next)
     {
         if(!Auth::check()){
-            return redirect('/Signin');
+            return redirect('/AdminLogin');
         }
-        if (Auth::user()->usertype != 0) {
-            return redirect('/');
+        if (Auth::user()->usertype != 1) {
+            return redirect('/Signin');
         }
         return $next($request);
     }

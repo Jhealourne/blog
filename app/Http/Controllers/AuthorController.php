@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use Auth;
 use DB;
 
+use App\Category;
+use App\Article;
+use App\Author;
+
 class AuthorController extends Controller
 {
     public function __construct()
@@ -14,11 +18,15 @@ class AuthorController extends Controller
         $this->middleware('checkgen'); 
     }
 
-    public function AuthorHome(){
-    	return view('author.home',['article' => $article]);
-    }
     public function WriteArticle(){
-        return view('author.write');
+        $ctgry = DB::table('category')->where('deleted',0)->get();
+        return view('author.write',compact('ctgry'));
+    }
+
+    public function showEditArticle($id){
+        $ctgry = Category::where('deleted',0)->get();
+        $article = Article::where('article_id',$id)->first();
+        return view('author.edit',compact('ctgry','article'));
     }
     public function saveArticle(Request $req){
         $image = $req->thumbnail;
@@ -34,6 +42,7 @@ class AuthorController extends Controller
             'article_thumbnail' => $filename,
             'article_full' => $req->article,
             'author_id' => Auth::user()->author_id,
+            'category_id' =>$req->ctgry,
             'publish_datetime' => date_create('now')->format('Y-m-d H:i:s')
         ]);
 

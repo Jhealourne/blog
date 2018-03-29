@@ -11,41 +11,13 @@
 
   <!-- Bootstrap core CSS -->
   <!-- <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.0/css/bootstrap.min.css"> -->
-  <link href="bootstrap-4.0.0-beta.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{asset('bootstrap-4.0.0-beta.2/dist/css/bootstrap.min.css')}}" rel="stylesheet">
   <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet"> -->
-
   <!-- Custom styles for this template -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
-  <link href="design2.css" rel="stylesheet" >
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <!-- <script src='/tinymce/js/tinymce/tinymce.min.js'></script> -->
-  <script src="/textboxio-client/textboxio/textboxio.js"></script>
-<!--   <script>
-// tinymce.init({
-//   selector: "textarea",  // change this value according to your HTML
-//   toolbar: "image",
-//   plugins: "image imagetools",
-//   imagetools_cors_hosts: ['mydomain.com', 'otherdomain.com'],
-//   imagetools_proxy: 'proxy.php'
-// });
-    tinymce.init({
-      selector: 'textarea',
-      height: 500,
-      plugins: [
-            "advlist autolink lists link image charmap print preview anchor",
-            "searchreplace visualblocks code fullscreen",
-            "insertdatetime media table contextmenu paste imagetools wordcount"
-        ],
-        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | image",
-      // imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
-      content_css: [
-        '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-        '//www.tinymce.com/css/codepen.min.css'
-      ]
-    });
-  </script> -->
+  <link href="{{asset('design2.css')}}" rel="stylesheet" >
+  <link href="{{asset('open-iconic-master/font/css/open-iconic-bootstrap.css')}}" rel="stylesheet">
 
   <style type="text/css">
     .row{
@@ -53,11 +25,6 @@
     }
   </style>
   @yield('style')
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('.dropdown-toggle').dropdown();
-    });
-  </script>
 </head>
 <body>
 
@@ -69,11 +36,15 @@
 
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Category</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Category
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            @foreach($variable as $var)
+            <a class="dropdown-item" href="/Category/{{$var->category_id}}">{{$var->category_name}}</a>
+            @endforeach
+          </div>
         </li>
       </ul>
     </div>
@@ -83,7 +54,7 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
     </div>
-    @if(!Auth::check())
+    @if(!Auth::check() || Auth::user()->usertype == '1')
     <div>
       <div class="btn btn-outline-primary" onclick="location.href='/Signin'">Sign-in</div>
       <div class="btn btn-outline-secondary" onclick="location.href='/Signup'">Sign-up</div>
@@ -97,7 +68,6 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
           <a class="dropdown-item" href="/WriteArticle">Write an article</a>
           <a class="dropdown-item" href="/AuthorProfile">Profile</a>
-          <a class="dropdown-item" href="/ManageArticle">Manage article</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="/Settings">Settings</a>
           <div class="dropdown-divider"></div>
@@ -121,19 +91,23 @@
     </div> -->
   </div>
 </div>
-    
 
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script type="text/javascript">
-      var editor = textboxio.replace('#mytextarea');
-    </script>
-    <script src="bootstrap-4.0.0-beta.2/assets/js/vendor/jquery-slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script src="{{asset('bootstrap-4.0.0-beta.2/assets/js/vendor/jquery-slim.min.js')}}"></script> -->
     <script>window.jQuery || document.write('<script src="bootstrap-4.0.0-beta.2/assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="bootstrap-4.0.0-beta.2/assets/js/vendor/popper.min.js"></script>
-    <script src="bootstrap-4.0.0-beta.2/dist/js/bootstrap.min.js"></script>
+    <script src="{{asset('bootstrap-4.0.0-beta.2/assets/js/vendor/popper.min.js')}}"></script>
+    <script src="{{asset('bootstrap-4.0.0-beta.2/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('textboxio-client/textboxio/textboxio.js')}}"></script>
+    <script src="{{asset('emotion-ratings-master/emotion-ratings.js')}}"></script>
+    <script src="{{asset('jquery-cookie-master/src/jquery.cookie.js')}}"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.dropdown-toggle').dropdown();
+      // alert($.cookie('userid'));
+    });
+  </script>
+
+    @yield('script')
   </body>
 </html>

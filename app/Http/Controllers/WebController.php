@@ -6,42 +6,42 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 
+use App\Rating;
+use App\Article;
+use App\Category;
+use App\Author;
+
 class WebController extends Controller
-{ 
-	// public function __construct()
- //    {
- //        $this->middleware('guest', ['except' => 'logout']);
- //    }
+{
     public function showAdminLogin(Request $req){
         return view('adminlogin');
     }
     public function doAdminLogin(Request $req){
-        if (DB::table('admin')->first() == "") {
-            DB::table('admin')->insert([
-                'username' => 'admin',
-                'password' => bcrypt('admin'),
-            ]);
-        } 
-        $var = DB::table('admin')->where('username',$req->username)->where('password',$req->password)->first();
-
-        if ($var == "") {
-            return redirect('/AdminLogin');
+        if(Auth::attempt(['username'=> $req->username,'password'=> $req->password, 'usertype' => 1, 'deleted' => 0])){
+            return redirect('/Admin/Home');
         } else {
-            return redirect('/AdminHome');
+            return redirect('/AdminLogin');
         }
-
     }
 
     public function homepage(){
-        $article = DB::table('article')->orderby('publish_datetime','DESC')->where('deleted',0)->get();
-    	return view('homepage',['article' => $article]);
+        $carousel = Article::where('deleted',0)->orderByRaw("RAND()")->take(3)->get();
+        $article = Article::orderby('publish_datetime','DESC')->where('deleted',0)->take(10)->get();
+        $category = Category::where('deleted',0)->get();
+        return view('homepage',compact('article','carousel','category'));
+    }
+    public function Category($id){
+        $article = Article::where('category_id',$id)->orderby('publish_datetime','DESC')->where('deleted',0)->get();
+        $ctgry = Category::where('category_id',$id)->first();
+        return view('category',compact('article','ctgry'));
     }
 
     public function showSignin(){
     	return view('signin');
     }
     public function login(Request $req){
-        if(Auth::attempt(['username'=> $req->username,'password'=> $req->password, 'deleted' => 0])){
+        if(Auth::attempt(['username'=> $req->username,'password'=> $req->password, 'usertype' => 0, 'deleted' => 0])){
+            setcookie('userid',Auth::id());
         	return redirect('/');
         } else {
         	return redirect('/Signin');
@@ -49,6 +49,7 @@ class WebController extends Controller
     }
     public function logout(Request $request) {
 	  Auth::logout();
+      setcookie('userid', null, time() - 3600);
 	  return redirect('/Signin');
 	}
 
@@ -63,7 +64,7 @@ class WebController extends Controller
         } else {
             $filename = "profileicon.jpg";
         }
-    	$auid = DB::table('author')->insertGetId([
+    	$auid = Author::insertGetId([
     		'first_name' => $req->first_name,
     		'last_name' => $req->last_name,
     		'display_name' => $req->display_name,
@@ -73,14 +74,36 @@ class WebController extends Controller
     	DB::table('users')->insert([
     		'username' => $req->user_name,
     		'password' => bcrypt($req->user_password),
+            'usertype' => '0',
     		'author_id' => $auid,
     	]);
     	return redirect('/Signin');
     }
 
     public function Article($id){
-        $article = DB::table('article as a')->where('a.article_id',$id)->join('author as au','au.author_id','=','a.author_id')->first();
-        return view('article',['article' => $article]);
+        $article = Article::where('article_id',$id)->first();
+        $rate = Rating::groupBy('rate')->where('article_id',$id)->orderBy('count', 'desc')->get(['rate', DB::raw('count(rate) as count')]);
+        echo $rate;
+        die();
+        return view('article',compact('article','rate'));
+    }
+    public function saveRating(Request $req){
+        if (Rating::where('article_id',$req->articleid)->where('userid',$req->user)->first()) {
+            Rating::where('article_id',$req->articleid)->where('userid',$req->user)->update([
+                'rate' => $req->rate ,
+            ]);
+        } else {
+            Rating::insert([
+                'article_id' => $req->articleid ,
+                'userid' => $req->user ,
+                'rate' => $req->rate ,
+            ]);
+        }
+        return response()->json();
+    }
+    public function getRating(Request $req){
+        $var = Rating::where('article_id',$req->articleid)->where('userid',$req->user)->first();
+        return response()->json($var->rate);
     }
 }
 

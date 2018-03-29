@@ -6,41 +6,23 @@
  <div class="container">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+      @foreach($carousel as $csl)
+        <li data-target="#myCarousel" data-slide-to="{{$loop->index}}" @if($loop->first) class="active" @endif></li>
+      @endforeach
       </ol>
       <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+      @foreach($carousel as $csl)
+        <div class="carousel-item @if($loop->first) active @endif">
+          <img src="thumbnails/{{$csl->article_thumbnail}}" alt="First slide" style="filter: brightness(50%);">
           <div class="container">
             <div class="carousel-caption text-left">
-              <h1>Example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+              <h1>{{$csl->article_title}}</h1>
+              <p>{{$csl->article_summary}}</p>
+              <p><a class="btn btn-lg btn-primary" href="/Article/{{$csl->article_id}}" role="button">Read More</a></p>
             </div>
           </div>
         </div>
-        <div class="carousel-item">
-          <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
-          <div class="container">
-            <div class="carousel-caption text-right">
-              <h1>One more for good measure.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-            </div>
-          </div>
-        </div>
+      @endforeach
       </div>
       <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -55,63 +37,38 @@
 
   <div class="container">
     <div class="row">
-      <div class="col">
+      @foreach($category as $cat)
+      <div class="col-sm-4" style="margin-top: 50px">
         <div class="card-deck">
-          <div class="card ">
-            <img class="card-img-top" src="img/cigarette.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title">tobacco excise tax</h4>
-                <p class="card-text">Labor, farmers appeal to bicam on tobacco excise tax</p>
-            </div>
-          </div>
           <div class="card">
-            <img class="card-img-top" src="img/Duterte-Marawi.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title">extend martial law for 1 more year</h4>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <div class="card-header lead">
+             {{$cat->category_name}}
             </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="img/Human-rights.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title">Human Rights</h4>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+            <div class="list-group list-group-flush">
+            @foreach($cat->article as $art)
+              @if($loop->first)   
+              <img class="card-img-top" src="/thumbnails/{{$art->article_thumbnail}}" alt="Card image cap" style="max-height: 250px; object-fit: cover;">
+              <div class="card-body">
+                <h4 class="card-title  font-weight-bold">{{$art->article_title}}</h4>
+                <!-- <div class="font-weight-light text-right"><small>This Article Makes People Happy</small></div> -->
+                <a href="/Article/{{$art->article_id}}" class="btn btn-outline-info float-right">Read More</a>
+              </div>
+              @else 
+              <a href="/Article/{{$art->article_id}}" class="list-group-item text-truncate font-weight-light" style="color: black">{{$art->article_title}}</a>
+              @endif
+            @endforeach
+              <button type="button" class="list-group-item text " style="color: black" onclick="location.href='/Category/{{$cat->category_id}}'"><i class="oi oi-caret-right"></i> More Articles</button>
             </div>
           </div>
         </div>      
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="card-deck">
-          <div class="card ">
-            <img class="card-img-top" src="img/cigarette.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title">tobacco excise tax</h4>
-                <p class="card-text">Labor, farmers appeal to bicam on tobacco excise tax</p>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="img/Duterte-Marawi.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title">extend martial law for 1 more year</h4>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="img/Human-rights.jpg" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title">Human Rights</h4>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-            </div>
-          </div>
-        </div>      
-      </div>
+      @endforeach
     </div>
   </div>
 
   <div class="container">
     <div class="row">
+      <h4 class="display-4 lead">New Articles</h4>
       <div class="list-group">
         @foreach($article as $art)
         <a href="/Article/{{$art->article_id}}" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -125,6 +82,9 @@
           </div>
         </a>
         @endforeach
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+          <center><a href="#">See all</a></center>
+        </div>
       </div>
     </div>
   </div>
