@@ -29,6 +29,10 @@ class AuthorController extends Controller
         $article = Article::where('article_id',$id)->first();
         return view('author.edit',compact('ctgry','article'));
     }
+    public function deleteArticle($id){
+        Article::where('article_id',$id)->update(['deleted' => 1]);
+        return redirect('/AuthorProfile');
+    }
     public function saveArticle(Request $req){
         $image = $req->thumbnail;
         if(!empty($image)){
@@ -49,6 +53,26 @@ class AuthorController extends Controller
 
         return redirect('/AuthorProfile');
     }
+    public function editArticle(Request $req){
+        $image = $req->thumbnail;
+        if(!empty($image)){
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('/thumbnails'), $filename);
+            DB::table('article')->where('article_id',$req->id)->update([
+                'article_thumbnail' => $filename,
+            ]);
+        } 
+        DB::table('article')->where('article_id',$req->id)->update([
+            'article_title' => $req->title,
+            'article_summary' => $req->summary,
+            'article_full' => $req->article,
+            'author_id' => Auth::user()->author_id,
+            'category_id' =>$req->ctgry,
+            'publish_datetime' => date_create('now')->format('Y-m-d H:i:s')
+        ]);
+        return redirect('/AuthorProfile');
+    }
+
     public function Profile(){
         $author = DB::table('author')->where('author_id',Auth::user()->author_id)->first();
         $article = DB::table('article')->where('author_id',Auth::user()->author_id)->where('deleted',0)->orderby('publish_datetime','DESC')->get();

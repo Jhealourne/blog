@@ -21,7 +21,7 @@ class WebController extends Controller
         return view('homepage',compact('article','carousel','category'));
     }
     public function Category($id){
-        $article = Article::where('category_id',$id)->orderby('publish_datetime','DESC')->where('deleted',0)->get();
+        $article = Article::where('category_id',$id)->orderby('publish_datetime','DESC')->where('deleted',0)->paginate(10);
         $ctgry = Category::where('category_id',$id)->first();
         return view('category',compact('article','ctgry'));
     }
@@ -76,11 +76,12 @@ class WebController extends Controller
 
     public function Article($id){
         $article = Article::where('article_id',$id)->first();
-        // $rate = Rating::groupBy('rate')->where('article_id',$id)->orderBy('count', 'desc')->get(['rate', DB::raw('count(rate) as count')]);
         $rate = Rating::where('article_id',$id)->get(); 
         $comments = Comments::where('article_id',$id)->get();
         if (Auth::check()) {
+            if (isset(Rating::where('article_id',$id)->where('userid',Auth::user()->author_id)->first()->rate)) {
             $rt = Rating::where('article_id',$id)->where('userid',Auth::user()->author_id)->first()->rate;
+            }
         }
         return view('article',compact('article','rate','comments','rt'));
     }

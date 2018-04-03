@@ -34,7 +34,9 @@ Route::get('/AuthorProfile', 'AuthorController@Profile');
 Route::get('/Settings', 'AuthorController@Settings');
 Route::get('/WriteArticle', 'AuthorController@WriteArticle');
 Route::get('/AuthorProfile/Edit/{id}', 'AuthorController@showEditArticle');
+Route::get('/AuthorProfile/Delete/{id}', 'AuthorController@deleteArticle');
 Route::post('/saveArticle', 'AuthorController@saveArticle');
+Route::post('/editArticle', 'AuthorController@editArticle');
 Route::post('/savePic', 'AuthorController@savePic');
 Route::post('/updateprofile', 'AuthorController@updateprofile');
 
@@ -47,4 +49,7 @@ Route::post('/addCategory', 'AdminController@addCategory');
 Route::post('/editCategory', 'AdminController@editCategory');
 Route::post('/delCategory', 'AdminController@delCategory');
 
-Route::get('/Admin/Users','AdminController@USers');
+Route::get('/Admin/Users','AdminController@Users');
+Route::post('/delUser','AdminController@delUser');
+Route::get('/Admin/Article','AdminController@Article');
+Route::get('/Admin/Article/Delete/{id}', 'AdminController@deleteArticle');

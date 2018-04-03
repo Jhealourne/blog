@@ -48,4 +48,18 @@ class AdminController extends Controller
         $users = Users::where('deleted',0)->where('id','!=',1)->get();
         return view('admin.users',compact('users'));
     }
+    public function delUser(Request $req){
+        Users::where('id',$req->id)->update([ 'deleted' => 1 ]);
+        return redirect('/Admin/Users');
+    }
+    public function Article(){
+        $article = DB::table('article')->join('author','author.author_id','=','article.author_id')->where('article.deleted',0)->orderby('article.publish_datetime','DESC')->get();
+        // $users = Users::where('deleted',0)->where('id','!=',1)->get();
+        return view('admin.article',compact('article'));
+    }
+    public function deleteArticle($id){
+        Article::where('article_id',$id)->update(['deleted' => 1]);
+        return redirect('/Admin/Article');
+    }
+
 }

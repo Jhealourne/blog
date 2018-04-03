@@ -83,9 +83,9 @@
           <div style="position: absolute;bottom: 10px; right: 20px; font-weight: lighter;">Date Published: {{date_create($art->publish_datetime)->format('M d, Y h:i a')}}</div>
         </a>
         @endforeach
-        <div class="list-group-item list-group-item-action flex-column align-items-start">
+        <!-- <div class="list-group-item list-group-item-action flex-column align-items-start">
           <center><a href="#">See all</a></center>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

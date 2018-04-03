@@ -51,6 +51,9 @@
           <a class="nav-link" href="/Admin/Category">Keywords</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="/Admin/Article">Article</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="/Admin/Users">Users</a>
         </li>
     </div>
