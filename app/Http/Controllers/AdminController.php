@@ -53,7 +53,7 @@ class AdminController extends Controller
         return redirect('/Admin/Users');
     }
     public function Article(){
-        $article = DB::table('article')->join('author','author.author_id','=','article.author_id')->where('article.deleted',0)->orderby('article.publish_datetime','DESC')->get();
+        $article = DB::table('article')->join('author','author.author_id','=','article.author_id')->where('article.deleted',0)->orderby('article.publish_datetime','DESC')->paginate(10);
         // $users = Users::where('deleted',0)->where('id','!=',1)->get();
         return view('admin.article',compact('article'));
     }
