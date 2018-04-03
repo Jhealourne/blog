@@ -13,12 +13,6 @@
         <li class="nav-item">
           <a class="nav-link active" href="#">Latest</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">All</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
       </ul>
 
     @foreach($article as $art)

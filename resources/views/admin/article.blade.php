@@ -9,13 +9,7 @@
     <div class="col-sm-7">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Latest</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">All</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link active" href="#">ALL</a>
         </li>
       </ul>
 
